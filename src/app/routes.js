@@ -1,11 +1,11 @@
-import Dashboard from './views/Dashboard';
-import Notifications from './views/Notifications';
-import Icons from './views/Icons.jsx';
-import Typography from './views/Typography.jsx';
-import TableList from './views/Tables.jsx';
-import Maps from './views/Map.jsx';
-import UserPage from './views/User.jsx';
-import UpgradeToPro from './views/Upgrade.jsx';
+import Dashboard from './Containers/Dashboard';
+import Notifications from './Containers/Notifications';
+import Icons from './Containers/Icons';
+import Typography from './Containers/Typography.jsx';
+import TableList from './Containers/Tables';
+// import Maps from './views/Map.jsx';
+import UserPage from './Containers/User.jsx';
+import UpgradeToPro from './Containers/Upgrade.jsx';
 
 var routes = [
   {
@@ -22,13 +22,13 @@ var routes = [
     component: Icons,
     layout: '/admin',
   },
-  {
-    path: '/maps',
-    name: 'Maps',
-    icon: 'nc-icon nc-pin-3',
-    component: Maps,
-    layout: '/admin',
-  },
+  // {
+  //   path: '/maps',
+  //   name: 'Maps',
+  //   icon: 'nc-icon nc-pin-3',
+  //   component: Maps,
+  //   layout: '/admin',
+  // },
   {
     path: '/notifications',
     name: 'Notifications',
