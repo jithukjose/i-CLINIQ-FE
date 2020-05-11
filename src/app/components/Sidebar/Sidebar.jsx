@@ -45,7 +45,7 @@ class Sidebar extends React.Component {
             </div>
           </a>
           <a href='#a' className='simple-text logo-normal'>
-            Creative Tim
+            Health App
           </a>
         </div>
         <div className='sidebar-wrapper' ref={this.sidebar}>
