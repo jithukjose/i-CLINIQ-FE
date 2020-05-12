@@ -6,6 +6,7 @@ import TableList from './Containers/Tables';
 // import Maps from './views/Map.jsx';
 import UserPage from './Containers/User.jsx';
 // import UpgradeToPro from './Containers/Upgrade.jsx';
+import MyDashboard from './Container/Dashboard/index';
 
 var routes = [
   {
@@ -13,6 +14,13 @@ var routes = [
     name: 'Dashboard',
     icon: 'nc-icon nc-bank',
     component: Dashboard,
+    layout: '/admin',
+  },
+  {
+    path: '/mydashboard',
+    name: 'MyDashboard',
+    icon: 'nc-icon nc-bank',
+    component: MyDashboard,
     layout: '/admin',
   },
   {
