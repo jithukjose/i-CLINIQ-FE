@@ -19,6 +19,7 @@ import {
 } from 'reactstrap';
 
 import routes from '../../routes';
+// import FixedPlugin from '../FixedPlugin/FixedPlugin';
 
 class Header extends React.Component {
   constructor(props) {
