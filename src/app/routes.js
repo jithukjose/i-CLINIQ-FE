@@ -7,6 +7,7 @@ import TableList from './Containers/Tables';
 import UserPage from './Containers/User.jsx';
 // import UpgradeToPro from './Containers/Upgrade.jsx';
 import MyDashboard from './Container/Dashboard/index';
+import LabTechnicianContainer from './Container/LabTechnician/index';
 
 var routes = [
   {
@@ -59,6 +60,13 @@ var routes = [
     component: Icons,
     layout: '/admin',
   },
+  {
+    path: '/labtechnician',
+    name: 'LAB TECHNICIAN',
+    icon: 'fas fa-microscope',
+    component: LabTechnicianContainer,
+    layout: '/admin',
+  },
   // {
   //   path: '/maps',
   //   name: 'Maps',
@@ -70,10 +78,7 @@ var routes = [
     name: 'DOCTOR',
     icon: 'fas fa-user-md',
   },
-  {
-    name: 'LAB TECHNICIAN',
-    icon: 'fas fa-microscope',
-  },
+
   {
     name: 'MEDICINES',
     icon: 'fas fa-pills',
