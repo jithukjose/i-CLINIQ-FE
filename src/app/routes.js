@@ -7,7 +7,7 @@ import TableList from './Containers/Tables';
 import UserPage from './Containers/User.jsx';
 // import UpgradeToPro from './Containers/Upgrade.jsx';
 import MyDashboard from './Container/Dashboard/index';
-import LabTechnicianContainer from './Container/LabTechnician/index';
+import DoctorContainer from './Container/Doctor/index';
 
 var routes = [
   {
@@ -17,13 +17,7 @@ var routes = [
     component: Dashboard,
     layout: '/admin',
   },
-  {
-    path: '/mydashboard',
-    name: 'MyDashboard',
-    icon: 'nc-icon nc-bank',
-    component: MyDashboard,
-    layout: '/admin',
-  },
+
   {
     path: '/notifications',
     name: 'Notifications',
@@ -74,10 +68,6 @@ var routes = [
   //   component: Maps,
   //   layout: '/admin',
   // },
-  {
-    name: 'DOCTOR',
-    icon: 'fas fa-user-md',
-  },
 
   {
     name: 'MEDICINES',
