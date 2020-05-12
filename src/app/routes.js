@@ -8,6 +8,7 @@ import UserPage from './Containers/User.jsx';
 // import UpgradeToPro from './Containers/Upgrade.jsx';
 import MyDashboard from './Container/Dashboard/index';
 import DoctorContainer from './Container/Doctor/index';
+import LabTechnicianContainer from './Container/LabTechnician/index';
 
 var routes = [
   {
@@ -75,8 +76,11 @@ var routes = [
     layout: '/admin',
   },
   {
+    path: '/labtechnician',
     name: 'LAB TECHNICIAN',
     icon: 'fas fa-microscope',
+    component: LabTechnicianContainer,
+    layout: '/admin',
   },
   {
     name: 'MEDICINES',
