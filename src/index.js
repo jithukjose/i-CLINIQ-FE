@@ -9,6 +9,7 @@ import './app/assets/demo/demo.css';
 import 'perfect-scrollbar/css/perfect-scrollbar.css';
 
 import AdminLayout from './app/layouts/Admin.js';
+import DoctorLayout from './app/layouts/doctor.js';
 
 const hist = createBrowserHistory();
 
@@ -16,7 +17,9 @@ ReactDOM.render(
   <Router history={hist}>
     <Switch>
       <Route path='/admin' render={(props) => <AdminLayout {...props} />} />
-      <Redirect to='/admin/dashboard' />
+
+      <Route path='/doctor' render={(props) => <DoctorLayout {...props} />} />
+      {/* <Redirect to='/admin/dashboard' /> */}
     </Switch>
   </Router>,
   document.getElementById('root')

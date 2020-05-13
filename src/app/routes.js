@@ -14,6 +14,8 @@ import MedicalTest from './Container/MedicalTests';
 import Profile from './Container/Profile';
 import Appointments from './Container/Appointments';
 
+import PatientAppointment from './Container/PatientAppointment';
+
 var routes = [
   {
     path: '/dashboard',
@@ -23,7 +25,7 @@ var routes = [
     layout: '/admin',
   },
   {
-    path: '/doctor',
+    path: '/doctors',
     name: 'DOCTOR',
     icon: 'fas fa-user-md',
     component: Doctor,
@@ -64,8 +66,16 @@ var routes = [
     component: Profile,
     layout: '/admin',
   },
+  {
+    path: '/myAppointments',
+    name: 'D-Appointment',
+    icon: 'fas fa-newspaper',
+    component: PatientAppointment,
+    layout: '/doctor',
+  },
 
   // {
+
   //   path: '/user-page',
   //   name: 'Profile',
   //   icon: 'nc-icon nc-single-02',

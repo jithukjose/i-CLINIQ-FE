@@ -11,7 +11,7 @@ import routes from '../routes';
 
 var ps;
 
-class AdminLayout extends React.Component {
+class DoctorLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -79,4 +79,4 @@ class AdminLayout extends React.Component {
   }
 }
 
-export default AdminLayout;
+export default DoctorLayout;
