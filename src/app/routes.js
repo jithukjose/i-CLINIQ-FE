@@ -6,9 +6,10 @@ import TableList from './Containers/Tables';
 // import Maps from './views/Map.jsx';
 import UserPage from './Containers/User.jsx';
 // import UpgradeToPro from './Containers/Upgrade.jsx';
-import MyDashboard from './Container/Dashboard/index';
-import DoctorContainer from './Container/Doctor/index';
-import LabTechnicianContainer from './Container/LabTechnician/index';
+import MyDashboard from './Container/Dashboard';
+import DoctorContainer from './Container/Doctor';
+import LabTechnicianContainer from './Container/LabTechnician';
+import MedicineContainer from './Container/Medicine';
 
 var routes = [
   {
@@ -83,8 +84,11 @@ var routes = [
     layout: '/admin',
   },
   {
+    path: '/medicine',
     name: 'MEDICINES',
     icon: 'fas fa-pills',
+    component: MedicineContainer,
+    layout: '/admin',
   },
   {
     name: 'LAB TESTS',
