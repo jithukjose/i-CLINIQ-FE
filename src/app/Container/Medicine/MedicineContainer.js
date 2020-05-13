@@ -18,7 +18,7 @@ import {
   Button,
 } from 'reactstrap';
 
-class MedicalTestContainer extends React.Component {
+class MedicineContainer extends React.Component {
   render() {
     return (
       <>
@@ -31,7 +31,7 @@ class MedicalTestContainer extends React.Component {
               //   onClick={() => this.notify('tr')}
               style={{ width: '20%' }}
             >
-              Add Medical Tests
+              Add Medicines
             </Button>
           </div>
           <div>
@@ -300,4 +300,4 @@ class MedicalTestContainer extends React.Component {
     );
   }
 }
-export default MedicalTestContainer;
+export default MedicineContainer;

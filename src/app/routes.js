@@ -5,20 +5,14 @@ import Typography from './Containers/Typography.jsx';
 import TableList from './Containers/Tables';
 // import Maps from './views/Map.jsx';
 import UserPage from './Containers/User.jsx';
-// import UpgradeToPro from './Containers/Upgrade.jsx';
+import UpgradeToPro from './Containers/Upgrade.jsx';
 import MyDashboard from './Container/Dashboard';
 import DoctorContainer from './Container/Doctor';
 import LabTechnicianContainer from './Container/LabTechnician';
+import MedicineContainer from './Container/Medicine';
 import MedicalTestContainer from './Container/MedicalTests';
 
 var routes = [
-  {
-    path: '/dashboard',
-    name: 'Dashboard',
-    icon: 'nc-icon nc-bank',
-    component: Dashboard,
-    layout: '/admin',
-  },
   {
     path: '/mydashboard',
     name: 'MyDashboard',
@@ -27,10 +21,31 @@ var routes = [
     layout: '/admin',
   },
   {
-    path: '/notifications',
-    name: 'Notifications',
-    icon: 'nc-icon nc-bell-55',
-    component: Notifications,
+    path: '/doctor',
+    name: 'DOCTOR',
+    icon: 'fas fa-user-md',
+    component: DoctorContainer,
+    layout: '/admin',
+  },
+  {
+    path: '/labtechnician',
+    name: 'LAB TECHNICIAN',
+    icon: 'fas fa-microscope',
+    component: LabTechnicianContainer,
+    layout: '/admin',
+  },
+  {
+    path: '/medicine',
+    name: 'MEDICINES',
+    icon: 'fas fa-pills',
+    component: MedicineContainer,
+    layout: '/admin',
+  },
+  {
+    path: '/labtests',
+    name: 'LAB TESTS',
+    icon: 'fas fa-vials',
+    component: MedicalTestContainer,
     layout: '/admin',
   },
   {
@@ -40,6 +55,22 @@ var routes = [
     component: UserPage,
     layout: '/admin',
   },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    icon: 'nc-icon nc-bank',
+    component: Dashboard,
+    layout: '/admin',
+  },
+
+  {
+    path: '/notifications',
+    name: 'Notifications',
+    icon: 'nc-icon nc-bell-55',
+    component: Notifications,
+    layout: '/admin',
+  },
+
   {
     path: '/tables',
     name: 'Table List',
@@ -64,43 +95,16 @@ var routes = [
   },
 
   {
-    path: '/doctor',
-    name: 'DOCTOR',
-    icon: 'fas fa-user-md',
-    component: DoctorContainer,
+    pro: true,
+    path: '/upgrade',
+    name: 'Upgrade to PRO',
+    icon: 'nc-icon nc-spaceship',
+    component: UpgradeToPro,
     layout: '/admin',
   },
-  {
-    path: '/labtechnician',
-    name: 'LAB TECHNICIAN',
-    icon: 'fas fa-microscope',
-    component: LabTechnicianContainer,
-    layout: '/admin',
-  },
-  {
-    path: '/medicaltest',
-    name: 'LAB TESTS',
-    icon: 'fas fa-vials',
-    component: MedicalTestContainer,
-    layout: '/admin',
-  },
-  {
-    name: 'MEDICINES',
-    icon: 'fas fa-pills',
-  },
-
   {
     name: 'APPOINTMENTS',
     icon: 'fas fa-newspaper',
   },
-
-  // {
-  //   pro: true,
-  //   path: '/upgrade',
-  //   name: 'Upgrade to PRO',
-  //   icon: 'nc-icon nc-spaceship',
-  //   component: UpgradeToPro,
-  //   layout: '/admin',
-  // },
 ];
 export default routes;
