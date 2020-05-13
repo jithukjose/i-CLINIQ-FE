@@ -14,16 +14,6 @@ class Footer extends React.Component {
             <nav className='footer-nav'>
               <ul>
                 <li>
-                  <a href='#abx' target='_blank'>
-                    Creative Tim
-                  </a>
-                </li>
-                <li>
-                  <a href='#aa' target='_blank'>
-                    Blog
-                  </a>
-                </li>
-                <li>
                   <a href='#ss' target='_blank'>
                     Licenses
                   </a>
@@ -32,8 +22,7 @@ class Footer extends React.Component {
             </nav>
             <div className='credits ml-auto'>
               <div className='copyright'>
-                &copy; {1900 + new Date().getYear()}, made with{' '}
-                <i className='fa fa-heart heart' /> by Creative Tim
+                &copy; {1900 + new Date().getYear()}, made by Jithu K Jose
               </div>
             </div>
           </Row>

@@ -8,7 +8,7 @@ import './app/assets/scss/paper-dashboard.scss?v=1.1.0';
 import './app/assets/demo/demo.css';
 import 'perfect-scrollbar/css/perfect-scrollbar.css';
 
-import AdminLayout from './app/layouts/Admin.jsx';
+import AdminLayout from './app/layouts/Admin.js';
 
 const hist = createBrowserHistory();
 

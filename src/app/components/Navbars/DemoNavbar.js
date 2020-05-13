@@ -28,10 +28,19 @@ class Header extends React.Component {
       isOpen: false,
       dropdownOpen: false,
       color: 'transparent',
+      classes: 'dropdown ',
     };
     this.toggle = this.toggle.bind(this);
     this.dropdownToggle = this.dropdownToggle.bind(this);
     this.sidebarToggle = React.createRef();
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    if (this.state.classes === 'dropdown show') {
+      this.setState({ classes: 'dropdown ' });
+    } else {
+      this.setState({ classes: 'dropdown show' });
+    }
   }
   toggle() {
     if (this.state.isOpen) {
@@ -145,14 +154,14 @@ class Header extends React.Component {
               </InputGroup>
             </form>
             <Nav navbar>
-              <NavItem>
+              {/* <NavItem>
                 <Link to='#pablo' className='nav-link btn-magnify'>
                   <i className='nc-icon nc-layout-11' />
                   <p>
                     <span className='d-lg-none d-md-block'>Stats</span>
                   </p>
                 </Link>
-              </NavItem>
+              </NavItem> */}
               <Dropdown
                 nav
                 isOpen={this.state.dropdownOpen}
@@ -170,10 +179,108 @@ class Header extends React.Component {
                   <DropdownItem tag='a'>Something else here</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
+
               <NavItem>
                 <Link to='#pablo' className='nav-link btn-rotate'>
-                  <i className='nc-icon nc-settings-gear-65' />
+                  <i
+                    className='nc-icon nc-settings-gear-65'
+                    onClick={this.handleClick}
+                  />
                   <p>
+                    <div className='fixed-plugin'>
+                      <div className={this.state.classes}>
+                        <ul className='dropdown-menu show'>
+                          <li className='header-title'>SIDEBAR BACKGROUND</li>
+                          <li className='adjustments-line'>
+                            <div className='badge-colors text-center'>
+                              <span
+                                className={
+                                  this.props.bgColor === 'black'
+                                    ? 'badge filter badge-dark active'
+                                    : 'badge filter badge-dark'
+                                }
+                                data-color='black'
+                                onClick={() => {
+                                  this.props.handleBgClick('black');
+                                }}
+                              />
+                              <span
+                                className={
+                                  this.props.bgColor === 'white'
+                                    ? 'badge filter badge-light active'
+                                    : 'badge filter badge-light'
+                                }
+                                data-color='white'
+                                onClick={() => {
+                                  this.props.handleBgClick('white');
+                                }}
+                              />
+                            </div>
+                          </li>
+                          <li className='header-title'>SIDEBAR ACTIVE COLOR</li>
+                          <li className='adjustments-line'>
+                            <div className='badge-colors text-center'>
+                              <span
+                                className={
+                                  this.props.activeColor === 'primary'
+                                    ? 'badge filter badge-primary active'
+                                    : 'badge filter badge-primary'
+                                }
+                                data-color='primary'
+                                onClick={() => {
+                                  this.props.handleActiveClick('primary');
+                                }}
+                              />
+                              <span
+                                className={
+                                  this.props.activeColor === 'info'
+                                    ? 'badge filter badge-info active'
+                                    : 'badge filter badge-info'
+                                }
+                                data-color='info'
+                                onClick={() => {
+                                  this.props.handleActiveClick('info');
+                                }}
+                              />
+                              <span
+                                className={
+                                  this.props.activeColor === 'success'
+                                    ? 'badge filter badge-success active'
+                                    : 'badge filter badge-success'
+                                }
+                                data-color='success'
+                                onClick={() => {
+                                  this.props.handleActiveClick('success');
+                                }}
+                              />
+                              <span
+                                className={
+                                  this.props.activeColor === 'warning'
+                                    ? 'badge filter badge-warning active'
+                                    : 'badge filter badge-warning'
+                                }
+                                data-color='warning'
+                                onClick={() => {
+                                  this.props.handleActiveClick('warning');
+                                }}
+                              />
+                              <span
+                                className={
+                                  this.props.activeColor === 'danger'
+                                    ? 'badge filter badge-danger active'
+                                    : 'badge filter badge-danger'
+                                }
+                                data-color='danger'
+                                onClick={() => {
+                                  this.props.handleActiveClick('danger');
+                                }}
+                              />
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
                     <span className='d-lg-none d-md-block'>Account</span>
                   </p>
                 </Link>

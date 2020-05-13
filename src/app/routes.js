@@ -16,7 +16,7 @@ import Appointments from './Container/Appointments';
 
 var routes = [
   {
-    path: '/mydashboard',
+    path: '/dashboard',
     name: 'MyDashboard',
     icon: 'nc-icon nc-bank',
     component: MyDashboard,
