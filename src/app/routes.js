@@ -11,6 +11,7 @@ import DoctorContainer from './Container/Doctor';
 import LabTechnicianContainer from './Container/LabTechnician';
 import MedicineContainer from './Container/Medicine';
 import MedicalTestContainer from './Container/MedicalTests';
+import Profile from './Container/Profile';
 
 var routes = [
   {
@@ -28,7 +29,7 @@ var routes = [
     layout: '/admin',
   },
   {
-    path: '/labtechnician',
+    path: '/lab-technician',
     name: 'LAB TECHNICIAN',
     icon: 'fas fa-microscope',
     component: LabTechnicianContainer,
@@ -42,10 +43,17 @@ var routes = [
     layout: '/admin',
   },
   {
-    path: '/labtests',
+    path: '/lab-tests',
     name: 'LAB TESTS',
     icon: 'fas fa-vials',
     component: MedicalTestContainer,
+    layout: '/admin',
+  },
+  {
+    path: '/profile-page',
+    name: 'MyProfile',
+    icon: 'nc-icon nc-single-02',
+    component: Profile,
     layout: '/admin',
   },
   {
