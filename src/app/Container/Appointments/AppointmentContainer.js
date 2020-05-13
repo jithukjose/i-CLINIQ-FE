@@ -33,7 +33,7 @@ class AppointmentContainer extends React.Component {
               //   onClick={() => this.notify('tr')}
               style={{ width: '20%' }}
             >
-              Add Appointments
+              Create Appointment
             </Button>
           </div>
           <div>
