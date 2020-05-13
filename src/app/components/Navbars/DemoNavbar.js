@@ -27,6 +27,7 @@ class Header extends React.Component {
     this.state = {
       isOpen: false,
       dropdownOpen: false,
+      profileDownOpen: false,
       color: 'transparent',
       classes: 'dropdown ',
     };
@@ -54,6 +55,11 @@ class Header extends React.Component {
     }
     this.setState({
       isOpen: !this.state.isOpen,
+    });
+  }
+  profileDropDown(e) {
+    this.setState({
+      profileDownOpen: !this.state.profileDownOpen,
     });
   }
   dropdownToggle(e) {
@@ -154,14 +160,6 @@ class Header extends React.Component {
               </InputGroup>
             </form>
             <Nav navbar>
-              {/* <NavItem>
-                <Link to='#pablo' className='nav-link btn-magnify'>
-                  <i className='nc-icon nc-layout-11' />
-                  <p>
-                    <span className='d-lg-none d-md-block'>Stats</span>
-                  </p>
-                </Link>
-              </NavItem> */}
               <Dropdown
                 nav
                 isOpen={this.state.dropdownOpen}
@@ -285,6 +283,23 @@ class Header extends React.Component {
                   </p>
                 </Link>
               </NavItem>
+
+              <Dropdown
+                nav
+                isOpen={this.state.profileDownOpen}
+                toggle={(e) => this.profileDropDown(e)}
+              >
+                <DropdownToggle caret nav>
+                  <i className='nc-icon nc-single-02' />
+                  <p>
+                    <span className='d-lg-none d-md-block'>Some Actions</span>
+                  </p>
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem tag='a'>Profile</DropdownItem>
+                  <DropdownItem tag='a'>Logout</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
             </Nav>
           </Collapse>
         </Container>
