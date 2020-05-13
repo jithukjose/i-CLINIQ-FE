@@ -6,9 +6,10 @@ import TableList from './Containers/Tables';
 // import Maps from './views/Map.jsx';
 import UserPage from './Containers/User.jsx';
 // import UpgradeToPro from './Containers/Upgrade.jsx';
-import MyDashboard from './Container/Dashboard/index';
-import DoctorContainer from './Container/Doctor/index';
-import LabTechnicianContainer from './Container/LabTechnician/index';
+import MyDashboard from './Container/Dashboard';
+import DoctorContainer from './Container/Doctor';
+import LabTechnicianContainer from './Container/LabTechnician';
+import MedicalTestContainer from './Container/MedicalTests';
 
 var routes = [
   {
@@ -61,13 +62,7 @@ var routes = [
     component: Icons,
     layout: '/admin',
   },
-  // {
-  //   path: '/maps',
-  //   name: 'Maps',
-  //   icon: 'nc-icon nc-pin-3',
-  //   component: Maps,
-  //   layout: '/admin',
-  // },
+
   {
     path: '/doctor',
     name: 'DOCTOR',
@@ -83,13 +78,17 @@ var routes = [
     layout: '/admin',
   },
   {
+    path: '/medicaltest',
+    name: 'LAB TESTS',
+    icon: 'fas fa-vials',
+    component: MedicalTestContainer,
+    layout: '/admin',
+  },
+  {
     name: 'MEDICINES',
     icon: 'fas fa-pills',
   },
-  {
-    name: 'LAB TESTS',
-    icon: 'fas fa-vials',
-  },
+
   {
     name: 'APPOINTMENTS',
     icon: 'fas fa-newspaper',
