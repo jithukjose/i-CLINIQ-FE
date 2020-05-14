@@ -15,6 +15,7 @@ import Profile from './Container/Profile';
 import Appointments from './Container/Appointments';
 
 import PatientAppointment from './Container/PatientAppointment';
+import CreatePatient from './Container/CreatePatient';
 
 var routes = [
   {
@@ -71,6 +72,14 @@ var routes = [
     name: 'D-Appointment',
     icon: 'fas fa-newspaper',
     component: PatientAppointment,
+    layout: '/doctor',
+  },
+
+  {
+    path: '/createPatient',
+    name: 'D-createPatient',
+    icon: 'fas fa-newspaper',
+    component: CreatePatient,
     layout: '/doctor',
   },
 
