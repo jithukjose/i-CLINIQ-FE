@@ -91,13 +91,13 @@ class PatientAppointmentContainer extends React.Component {
                                 href='#pablo'
                                 onClick={(e) => e.preventDefault()}
                               >
-                                More details
+                                Observation
                               </DropdownItem>
                               <DropdownItem
                                 href='#pablo'
                                 onClick={(e) => e.preventDefault()}
                               >
-                                Refer to lab
+                                More details
                               </DropdownItem>
                               <DropdownItem
                                 href='#pablo'

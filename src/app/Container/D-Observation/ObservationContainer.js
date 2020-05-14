@@ -36,6 +36,7 @@ class ObservationContainer extends React.Component {
                             defaultValue='Tim'
                             placeholder='First Name'
                             type='text'
+                            disabled
                           />
                         </FormGroup>
                       </Col>
@@ -46,6 +47,7 @@ class ObservationContainer extends React.Component {
                             type='email'
                             defaultValue='Timmartin@gmail.com'
                             placeholder='Email'
+                            disabled
                           />
                         </FormGroup>
                       </Col>
@@ -158,7 +160,7 @@ class ObservationContainer extends React.Component {
                           color='primary'
                           type='submit'
                         >
-                          Next
+                          submit
                         </Button>
                       </div>
                     </Row>

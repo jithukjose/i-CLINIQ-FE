@@ -80,7 +80,7 @@ var routes = [
   {
     path: '/createPatient',
     name: 'D-createPatient',
-    icon: 'fas fa-newspaper',
+    icon: 'fas fa-hospital-user',
     component: CreatePatient,
     layout: '/doctor',
   },

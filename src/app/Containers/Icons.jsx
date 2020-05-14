@@ -25,6 +25,15 @@ class Icons extends React.Component {
                         <li>
                           <i
                             style={{ fontSize: '5rem' }}
+                            className='fas fa-hospital-user'
+                          />
+                          <p>nc-air-baloon</p>
+                          <em>\ea01</em>
+                        </li>
+
+                        <li>
+                          <i
+                            style={{ fontSize: '5rem' }}
                             className='nc-icon nc-air-baloon  fa-10x'
                           />
                           <p>nc-air-baloon</p>
