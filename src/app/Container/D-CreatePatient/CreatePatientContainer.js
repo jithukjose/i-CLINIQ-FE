@@ -12,6 +12,7 @@ import {
   Input,
   Row,
   Col,
+  Label,
 } from 'reactstrap';
 
 class CreatePatientContainer extends React.Component {
@@ -72,15 +73,15 @@ class CreatePatientContainer extends React.Component {
                           />
                         </FormGroup>
                       </Col>
+
                       <Col md='6'>
                         <FormGroup>
-                          <label>Sex</label>
-
-                          <Input
-                            defaultValue='Faker'
-                            placeholder='Sex'
-                            type='select'
-                          />
+                          <Label for='exampleSelect'>Sex</Label>
+                          <Input type='select' name='select' id='exampleSelect'>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Others</option>
+                          </Input>
                         </FormGroup>
                       </Col>
                     </Row>
@@ -129,10 +130,14 @@ class CreatePatientContainer extends React.Component {
                       </Col>
                     </Row>
                     <Row>
-                      <Col className='pl-1' md='5'>
+                      <Col className='pr-1' md='5'>
                         <FormGroup>
-                          <label>Postal Code</label>
-                          <Input placeholder='ZIP Code' type='number' />
+                          <label>Country</label>
+                          <Input
+                            placeholder='Country'
+                            type='text'
+                            defaultValue='India'
+                          />
                         </FormGroup>
                       </Col>
                     </Row>
