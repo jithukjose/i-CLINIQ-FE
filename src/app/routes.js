@@ -14,8 +14,8 @@ import MedicalTest from './Container/MedicalTests';
 import Profile from './Container/Profile';
 import Appointments from './Container/Appointments';
 
-import PatientAppointment from './Container/PatientAppointment';
-import CreatePatient from './Container/CreatePatient';
+import PatientAppointment from './Container/D-PatientAppointment';
+import CreatePatient from './Container/D-CreatePatient';
 
 var routes = [
   {
