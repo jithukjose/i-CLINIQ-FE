@@ -17,6 +17,7 @@ import Appointments from './Container/Appointments';
 import PatientAppointment from './Container/D-PatientAppointment';
 import CreatePatient from './Container/D-CreatePatient';
 import CreateAppointment from './Container/D-CreateAppointment';
+import Observation from './Container/D-Observation';
 
 var routes = [
   {
@@ -85,12 +86,19 @@ var routes = [
   },
   {
     path: '/createAppointment',
-    name: 'D-createAppointment',
+    name: 'D-createAppointmen',
     icon: 'fas fa-newspaper',
     component: CreateAppointment,
     layout: '/doctor',
   },
 
+  {
+    path: '/observation',
+    name: 'D-Observation',
+    icon: 'fas fa-newspaper',
+    component: Observation,
+    layout: '/doctor',
+  },
   // {
 
   //   path: '/user-page',
