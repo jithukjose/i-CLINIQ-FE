@@ -97,6 +97,12 @@ class PatientAppointmentContainer extends React.Component {
                                 href='#pablo'
                                 onClick={(e) => e.preventDefault()}
                               >
+                                Refer to lab
+                              </DropdownItem>
+                              <DropdownItem
+                                href='#pablo'
+                                onClick={(e) => e.preventDefault()}
+                              >
                                 Edit
                               </DropdownItem>
                               <DropdownItem
