@@ -20,6 +20,8 @@ import CreateAppointment from './Container/D-CreateAppointment';
 import Prescription from './Container/D-Prescription';
 import Observation from './Container/D-Observation';
 
+import UpcommingTest from './Container/L-UpcommingTest';
+
 var routes = [
   {
     path: '/dashboard',
@@ -107,6 +109,14 @@ var routes = [
     icon: 'fas fa-newspaper',
     component: Observation,
     layout: '/doctor',
+  },
+
+  {
+    path: '/upcomming-tests',
+    name: 'L-upcomming Test',
+    icon: 'nc-icon nc-single-02',
+    component: UpcommingTest,
+    layout: '/lab-technician',
   },
   // {
 
