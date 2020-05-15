@@ -19,20 +19,19 @@ import {
   Button,
 } from 'reactstrap';
 
-class ObservationContainer extends React.Component {
+class UpcommingTestContainer extends React.Component {
   render() {
     return (
       <>
         <div className='content'>
           <div>
-            {' '}
             <Button
               block
               color='primary'
               //   onClick={() => this.notify('tr')}
               style={{ width: '20%' }}
             >
-              Observations
+              Tests
             </Button>
           </div>
           <div>
@@ -40,14 +39,14 @@ class ObservationContainer extends React.Component {
               <div className='col'>
                 <Card className='shadow'>
                   <CardHeader className='border-0'>
-                    <h3 className='mb-0'>Observations</h3>
+                    <h3 className='mb-0'>Upcomming Test</h3>
                   </CardHeader>
                   <Table className='align-items-center table-flush' responsive>
                     <thead className='thead-light'>
                       <tr>
                         <th scope='col'>Patient Name</th>
-                        <th scope='col'>Test Name</th>
-                        <th scope='col'>Lab Result Status</th>
+                        <th scope='col'>Doctor</th>
+                        <th scope='col'>Test</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -82,18 +81,6 @@ class ObservationContainer extends React.Component {
                               <i className='fas fa-ellipsis-v' />
                             </DropdownToggle>
                             <DropdownMenu className='dropdown-menu-arrow' right>
-                              <DropdownItem
-                                href='#pablo'
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                Download lab result
-                              </DropdownItem>
-                              <DropdownItem
-                                href='#pablo'
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                More details
-                              </DropdownItem>
                               <DropdownItem
                                 href='#pablo'
                                 onClick={(e) => e.preventDefault()}
@@ -365,4 +352,4 @@ class ObservationContainer extends React.Component {
     );
   }
 }
-export default ObservationContainer;
+export default UpcommingTestContainer;
