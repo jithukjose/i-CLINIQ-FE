@@ -15,7 +15,7 @@ import {
   Label,
 } from 'reactstrap';
 
-class ObservationContainer extends React.Component {
+class PrescriptionContainer extends React.Component {
   render() {
     return (
       <>
@@ -175,4 +175,4 @@ class ObservationContainer extends React.Component {
   }
 }
 
-export default ObservationContainer;
+export default PrescriptionContainer;
