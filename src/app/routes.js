@@ -18,6 +18,7 @@ import PatientAppointment from './Container/D-PatientAppointment';
 import CreatePatient from './Container/D-CreatePatient';
 import CreateAppointment from './Container/D-CreateAppointment';
 import Prescription from './Container/D-Prescription';
+import Observation from './Container/D-Observation';
 
 var routes = [
   {
@@ -93,10 +94,18 @@ var routes = [
   },
 
   {
-    path: '/Prescription',
+    path: '/prescription',
     name: 'D-Prescription',
     icon: 'fas fa-newspaper',
     component: Prescription,
+    layout: '/doctor',
+  },
+
+  {
+    path: '/observations',
+    name: 'D-Observations',
+    icon: 'fas fa-newspaper',
+    component: Observation,
     layout: '/doctor',
   },
   // {
