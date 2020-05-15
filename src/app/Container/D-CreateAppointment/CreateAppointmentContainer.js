@@ -17,7 +17,7 @@ class CreateAppointmentContainer extends React.Component {
       <>
         <div className='content'>
           <Row>
-            <Col md='10' style={{ paddingLeft: '20%' }}>
+            <Col md='10' style={{ paddingLeft: '12%' }}>
               <Card className='card-user'>
                 <CardHeader>
                   <CardTitle tag='h5'> Create Appointment</CardTitle>
