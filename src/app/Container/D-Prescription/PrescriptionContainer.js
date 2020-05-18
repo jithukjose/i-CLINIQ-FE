@@ -24,7 +24,7 @@ class PrescriptionContainer extends React.Component {
             <Col md='11'>
               <Card className='card-user'>
                 <CardHeader>
-                  <CardTitle tag='h5'> Observation</CardTitle>
+                  <CardTitle tag='h5'> Prescription</CardTitle>
                 </CardHeader>
                 <CardBody>
                   <Form>

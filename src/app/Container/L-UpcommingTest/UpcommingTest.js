@@ -17,6 +17,7 @@ import {
   PaginationItem,
   PaginationLink,
   Button,
+  UncontrolledTooltip,
 } from 'reactstrap';
 
 class UpcommingTestContainer extends React.Component {
@@ -31,7 +32,7 @@ class UpcommingTestContainer extends React.Component {
               //   onClick={() => this.notify('tr')}
               style={{ width: '20%' }}
             >
-              Tests
+              Create Appointment
             </Button>
           </div>
           <div>
@@ -39,14 +40,17 @@ class UpcommingTestContainer extends React.Component {
               <div className='col'>
                 <Card className='shadow'>
                   <CardHeader className='border-0'>
-                    <h3 className='mb-0'>Upcomming Test</h3>
+                    <h3 className='mb-0'>Appointments</h3>
                   </CardHeader>
                   <Table className='align-items-center table-flush' responsive>
                     <thead className='thead-light'>
                       <tr>
-                        <th scope='col'>Patient Name</th>
+                        <th scope='col'>Patient </th>
                         <th scope='col'>Doctor</th>
                         <th scope='col'>Test</th>
+                        <th scope='col'>Test Status</th>
+
+                        <th scope='col' />
                       </tr>
                     </thead>
                     <tbody>
@@ -54,19 +58,13 @@ class UpcommingTestContainer extends React.Component {
                         <th scope='row'>
                           <Media className='align-items-center'>
                             <Media>
-                              <span className='mb-0 text-sm'>
-                                Argon Design System
-                              </span>
+                              <span className='mb-0 text-sm'>Tim</span>
                             </Media>
                           </Media>
                         </th>
-                        <td>$2,500 USD</td>
-                        <td>
-                          <Badge color='' className='badge-dot mr-3'>
-                            <i className='bg-warning' />
-                            pending
-                          </Badge>
-                        </td>
+                        <td>Renjith</td>
+                        <td>Sugar test</td>
+                        <td>Pending</td>
 
                         <td className='text-right'>
                           <UncontrolledDropdown>
@@ -81,6 +79,12 @@ class UpcommingTestContainer extends React.Component {
                               <i className='fas fa-ellipsis-v' />
                             </DropdownToggle>
                             <DropdownMenu className='dropdown-menu-arrow' right>
+                              <DropdownItem
+                                href='#pablo'
+                                onClick={(e) => e.preventDefault()}
+                              >
+                                More details
+                              </DropdownItem>
                               <DropdownItem
                                 href='#pablo'
                                 onClick={(e) => e.preventDefault()}
@@ -101,30 +105,14 @@ class UpcommingTestContainer extends React.Component {
                       <tr>
                         <th scope='row'>
                           <Media className='align-items-center'>
-                            <a
-                              className='avatar rounded-circle mr-3'
-                              href='#pablo'
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <img
-                                alt='...'
-                                // src={require('assets/img/theme/sketch.jpg')}
-                              />
-                            </a>
                             <Media>
-                              <span className='mb-0 text-sm'>
-                                Black Dashboard
-                              </span>
+                              <span className='mb-0 text-sm'>Tim</span>
                             </Media>
                           </Media>
                         </th>
-                        <td>$3,150 USD</td>
-                        <td>
-                          <Badge color='' className='badge-dot mr-4'>
-                            <i className='bg-danger' />
-                            delayed
-                          </Badge>
-                        </td>
+                        <td>Renjith</td>
+                        <td>Sugar test</td>
+                        <td>Pending</td>
 
                         <td className='text-right'>
                           <UncontrolledDropdown>
@@ -143,19 +131,19 @@ class UpcommingTestContainer extends React.Component {
                                 href='#pablo'
                                 onClick={(e) => e.preventDefault()}
                               >
-                                Action
+                                More details
                               </DropdownItem>
                               <DropdownItem
                                 href='#pablo'
                                 onClick={(e) => e.preventDefault()}
                               >
-                                Another action
+                                Edit
                               </DropdownItem>
                               <DropdownItem
                                 href='#pablo'
                                 onClick={(e) => e.preventDefault()}
                               >
-                                Something else here
+                                Delete
                               </DropdownItem>
                             </DropdownMenu>
                           </UncontrolledDropdown>
@@ -165,30 +153,14 @@ class UpcommingTestContainer extends React.Component {
                       <tr>
                         <th scope='row'>
                           <Media className='align-items-center'>
-                            <a
-                              className='avatar rounded-circle mr-3'
-                              href='#pablo'
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <img
-                                alt='...'
-                                // src={require('assets/img/theme/react.jpg')}
-                              />
-                            </a>
                             <Media>
-                              <span className='mb-0 text-sm'>
-                                React Material Dashboard
-                              </span>
+                              <span className='mb-0 text-sm'>Tim</span>
                             </Media>
                           </Media>
                         </th>
-                        <td>$4,400 USD</td>
-                        <td>
-                          <Badge color='' className='badge-dot'>
-                            <i className='bg-info' />
-                            on schedule
-                          </Badge>
-                        </td>
+                        <td>Renjith</td>
+                        <td>Sugar test</td>
+                        <td>Pending</td>
 
                         <td className='text-right'>
                           <UncontrolledDropdown>
@@ -207,19 +179,19 @@ class UpcommingTestContainer extends React.Component {
                                 href='#pablo'
                                 onClick={(e) => e.preventDefault()}
                               >
-                                Action
+                                More details
                               </DropdownItem>
                               <DropdownItem
                                 href='#pablo'
                                 onClick={(e) => e.preventDefault()}
                               >
-                                Another action
+                                Edit
                               </DropdownItem>
                               <DropdownItem
                                 href='#pablo'
                                 onClick={(e) => e.preventDefault()}
                               >
-                                Something else here
+                                Delete
                               </DropdownItem>
                             </DropdownMenu>
                           </UncontrolledDropdown>
@@ -229,30 +201,14 @@ class UpcommingTestContainer extends React.Component {
                       <tr>
                         <th scope='row'>
                           <Media className='align-items-center'>
-                            <a
-                              className='avatar rounded-circle mr-3'
-                              href='#pablo'
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <img
-                                alt='...'
-                                // src={require('assets/img/theme/vue.jpg')}
-                              />
-                            </a>
                             <Media>
-                              <span className='mb-0 text-sm'>
-                                Vue Paper UI Kit PRO
-                              </span>
+                              <span className='mb-0 text-sm'>Tim</span>
                             </Media>
                           </Media>
                         </th>
-                        <td>$2,200 USD</td>
-                        <td>
-                          <Badge color='' className='badge-dot mr-4'>
-                            <i className='bg-success' />
-                            completed
-                          </Badge>
-                        </td>
+                        <td>Renjith</td>
+                        <td>Sugar test</td>
+                        <td>Pending</td>
 
                         <td className='text-right'>
                           <UncontrolledDropdown>
@@ -271,19 +227,19 @@ class UpcommingTestContainer extends React.Component {
                                 href='#pablo'
                                 onClick={(e) => e.preventDefault()}
                               >
-                                Action
+                                More details
                               </DropdownItem>
                               <DropdownItem
                                 href='#pablo'
                                 onClick={(e) => e.preventDefault()}
                               >
-                                Another action
+                                Edit
                               </DropdownItem>
                               <DropdownItem
                                 href='#pablo'
                                 onClick={(e) => e.preventDefault()}
                               >
-                                Something else here
+                                Delete
                               </DropdownItem>
                             </DropdownMenu>
                           </UncontrolledDropdown>
