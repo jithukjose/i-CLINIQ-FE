@@ -21,6 +21,7 @@ import Prescription from './Container/D-Prescription';
 import Observation from './Container/D-Observation';
 
 import UpcommingTest from './Container/L-UpcommingTest';
+import UpdateResult from './Container/L-UpdateResult';
 
 var routes = [
   {
@@ -112,10 +113,18 @@ var routes = [
   },
 
   {
-    path: '/upcomming-tests',
+    path: '/upcommingTests',
     name: 'L-upcomming Test',
     icon: 'nc-icon nc-single-02',
     component: UpcommingTest,
+    layout: '/lab-technician',
+  },
+
+  {
+    path: '/UpdateResult',
+    name: 'L-Update Result',
+    icon: 'nc-icon nc-single-02',
+    component: UpdateResult,
     layout: '/lab-technician',
   },
   // {
