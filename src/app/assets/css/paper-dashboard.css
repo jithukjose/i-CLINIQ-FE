@@ -1801,6 +1801,15 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
   padding-bottom: 0.625rem;
   min-height: 53px;
   margin-bottom: 20px; }
+  .navbar .photo {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    vertical-align: middle;
+    overflow: hidden; }
+    .navbar .photo img {
+      width: 100%; }
   .navbar a {
     vertical-align: middle; }
     .navbar a:not(.btn):not(.dropdown-item) {
@@ -3928,7 +3937,8 @@ License - nucleoapp.com/license/
   height: 500px; }
 
 .card-stats .card-body {
-  padding: 15px 15px 0px; }
+  padding: 15px 15px 0px;
+height:80% }
   .card-stats .card-body .numbers {
     text-align: right;
     font-size: 2em; }

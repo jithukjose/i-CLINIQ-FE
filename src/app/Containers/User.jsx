@@ -169,6 +169,7 @@ class User extends React.Component {
                 </CardBody>
               </Card>
             </Col>
+
             <Col md='8'>
               <Card className='card-user'>
                 <CardHeader>
