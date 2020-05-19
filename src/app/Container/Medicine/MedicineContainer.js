@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import useFetch from '../../Helpers/Custom useFetch()';
 
 import MedicineList from './MedicineUI';
 
 const MedicineContainer = () => {
-  const [medicineLists, setMedicineList] = useState([]);
+  const { response, error, loading } = useFetch(
+    'http://localhost:5000/api/medicines',
+    {}
+  );
 
-  useEffect(() => {
-    fetch('http://localhost:5000/api/medicines')
-      .then((response) => response.json())
-      .then((medicineList) => {
-        console.log(medicineList.records[0].name, '22222222');
-
-        setMedicineList(medicineList);
-      });
-  }, []);
-  return <MedicineList medicineList={medicineLists} />;
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  return <MedicineList medicineList={response} />;
 };
+
 export default MedicineContainer;
