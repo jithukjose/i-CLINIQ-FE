@@ -17,6 +17,7 @@ const useFetch = (url, options) => {
       }
     };
     fetchData();
+    // eslint-disable-next-line
   }, [options, url]);
   return { response, error, isLoading };
 };

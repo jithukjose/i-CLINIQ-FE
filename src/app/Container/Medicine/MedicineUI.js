@@ -6,7 +6,6 @@ import {
   CardHeader,
   Table,
   Row,
-  CardFooter,
   DropdownMenu,
   DropdownItem,
   UncontrolledDropdown,
@@ -15,7 +14,7 @@ import {
   Button,
 } from 'reactstrap';
 
-const MedicineList = ({ medicineList }) => {
+const MedicineList = ({ medicineList, onEditClick }) => {
   const renderMedicine =
     medicineList &&
     medicineList.records &&
@@ -41,13 +40,10 @@ const MedicineList = ({ medicineList }) => {
               <i className='fas fa-ellipsis-v' />
             </DropdownToggle>
             <DropdownMenu className='dropdown-menu-arrow' right>
-              <DropdownItem href='#pablo' onClick={(e) => e.preventDefault()}>
-                More details
-              </DropdownItem>
-              <DropdownItem href='#pablo' onClick={(e) => e.preventDefault()}>
+              <DropdownItem onClick={(e) => onEditClick(e, list.id)}>
                 Edit
               </DropdownItem>
-              <DropdownItem href='#pablo' onClick={(e) => e.preventDefault()}>
+              <DropdownItem onClick={(e) => e.preventDefault()}>
                 Delete
               </DropdownItem>
             </DropdownMenu>
