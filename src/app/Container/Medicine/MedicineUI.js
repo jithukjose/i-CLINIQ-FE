@@ -41,7 +41,7 @@ const MedicineList = ({ medicineList, onEditClick }) => {
             </DropdownToggle>
             <DropdownMenu className='dropdown-menu-arrow' right>
               <DropdownItem onClick={(e) => onEditClick(e, list.id)}>
-                Edit
+                Update
               </DropdownItem>
               <DropdownItem onClick={(e) => e.preventDefault()}>
                 Delete
@@ -53,38 +53,36 @@ const MedicineList = ({ medicineList, onEditClick }) => {
     ));
   return (
     <>
-      <div className='content'>
-        <div>
-          <Button
-            block
-            color='primary'
-            //   onClick={() => this.notify('tr')}
-            style={{ width: '20%' }}
-          >
-            Add Medicine
-          </Button>
-        </div>
-        <div>
-          <Row>
-            <div className='col'>
-              <Card className='shadow'>
-                <CardHeader className='border-0'>
-                  <h3 className='mb-0'>Medicines</h3>
-                </CardHeader>
-                <Table className='align-items-center table-flush' responsive>
-                  <thead className='thead-light'>
-                    <tr>
-                      <th scope='col'>Name</th>
+      <div>
+        <Button
+          block
+          color='primary'
+          //   onClick={() => this.notify('tr')}
+          style={{ width: '20%' }}
+        >
+          Add Medicine
+        </Button>
+      </div>
+      <div>
+        <Row>
+          <div className='col'>
+            <Card className='shadow'>
+              <CardHeader className='border-0'>
+                <h3 className='mb-0'>Medicines</h3>
+              </CardHeader>
+              <Table className='align-items-center table-flush' responsive>
+                <thead className='thead-light'>
+                  <tr>
+                    <th scope='col'>Name</th>
 
-                      <th scope='col' />
-                    </tr>
-                  </thead>
-                  <tbody>{renderMedicine}</tbody>
-                </Table>
-              </Card>
-            </div>
-          </Row>
-        </div>
+                    <th scope='col' />
+                  </tr>
+                </thead>
+                <tbody>{renderMedicine}</tbody>
+              </Table>
+            </Card>
+          </div>
+        </Row>
       </div>
     </>
   );

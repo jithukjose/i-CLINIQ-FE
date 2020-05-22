@@ -1,4 +1,5 @@
 const icons = [
+  { name: 'fas fa-hospital-user' },
   {
     name: 'nc-air-baloon',
     content: '\\ea01',

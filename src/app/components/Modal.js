@@ -1,40 +1,33 @@
 import React from 'react';
-import { Button, Modal, ModalBody, ModalFooter, Row } from 'reactstrap';
+import { Button, Modal, ModalFooter, Row } from 'reactstrap';
 
 const DeleteModalModule = ({
   isDeleteModalButtonClicked,
   onModalClick,
   onDeleteConfirmClick,
+  setModal,
+  medicineList,
+  children,
+  onCancelClick,
 }) => (
   <Row>
     <div>
-      <Modal isOpen={true}>
-        <ModalBody style={{ fontFamily: 'Varela Round' }}>
-          <i
-            class='fas fa-times-circle fa-4x text-danger'
-            style={{ paddingLeft: '45%' }}
-          ></i>
-          <h4
-            style={{
-              textAlign: 'center',
-              fontSize: '26px',
-              margin: '30px 0 -10px',
-            }}
-          >
-            Are you sure?
-          </h4>
-          <br></br>
-          <h6 style={{ textAlign: 'center' }}>
-            Do you really want to delete these records? This process cannot be
-            undone.
-          </h6>
-        </ModalBody>
+      <Modal isOpen={setModal}>
+        {children}
         <ModalFooter>
-          <Button color='secondary' onClick={onModalClick}>
+          <Button
+            className='btn-round'
+            color='secondary'
+            onClick={onCancelClick}
+          >
             Cancel
           </Button>
-          <Button color='danger' onClick={(e) => onDeleteConfirmClick(e)}>
-            Delete
+          <Button
+            color='primary'
+            className='btn-round'
+            onClick={(e) => onDeleteConfirmClick(e)}
+          >
+            Submit
           </Button>
         </ModalFooter>
       </Modal>

@@ -25,17 +25,18 @@ export const fetchMedicineList = async (dispatch) => {
   }
 };
 
-export const editMedicine = async (dispatch) => {
+export const editMedicine = (editedMedicine, id) => async (dispatch) => {
   dispatch({ type: PUT_ALL_MEDICINE_START });
   try {
-    let url = 'http://localhost:5000/api/medicines';
+    let url = `http://localhost:5000/api/medicines/${id}`;
 
     const response = await fetch(url, {
-      method: 'GET',
+      method: 'PUT',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify(editedMedicine),
     });
     const payload = await response.json();
     dispatch({ type: PUT_ALL_MEDICINE_SUCCESS, payload });
