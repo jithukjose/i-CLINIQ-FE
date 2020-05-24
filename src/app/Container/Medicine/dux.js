@@ -6,6 +6,10 @@ const PUT_ALL_MEDICINE_START = 'ADMIN/PUT_ALL_MEDICINE_START';
 const PUT_ALL_MEDICINE_SUCCESS = 'ADMIN/PUT_ALL_MEDICINE_SUCCESS';
 const PUT_ALL_MEDICINE_FAIL = 'ADMIN/PUT_ALL_MEDICINE_FAIL';
 
+const DELETE_MEDICINE_START = 'ADMIN/DELETE_MEDICINE_START';
+const DELETE_MEDICINE_SUCCESS = 'ADMIN/DELETE_MEDICINE_SUCCESS';
+const DELETE_MEDICINE_FAIL = 'ADMIN/DELETE_MEDICINE_FAIL';
+
 export const fetchMedicineList = async (dispatch) => {
   dispatch({ type: GET_ALL_MEDICINE_START });
   try {
@@ -28,20 +32,38 @@ export const fetchMedicineList = async (dispatch) => {
 export const editMedicine = (editedMedicine, id) => async (dispatch) => {
   dispatch({ type: PUT_ALL_MEDICINE_START });
   try {
+    // let url = `http://localhost:5000/api/medicines/${id}`;
+    // const response = await fetch(url, {
+    //   method: 'PUT',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(editedMedicine),
+    // });
+    // const payload = await response.json();
+    // dispatch({ type: PUT_ALL_MEDICINE_SUCCESS, payload });
+  } catch (error) {
+    dispatch({ type: PUT_ALL_MEDICINE_FAIL });
+  }
+};
+
+export const deleteMedicine = (id) => async (dispatch) => {
+  dispatch({ type: DELETE_MEDICINE_START });
+  try {
     let url = `http://localhost:5000/api/medicines/${id}`;
 
-    const response = await fetch(url, {
-      method: 'PUT',
+    await fetch(url, {
+      method: 'DELETE',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(editedMedicine),
     });
-    const payload = await response.json();
-    dispatch({ type: PUT_ALL_MEDICINE_SUCCESS, payload });
+
+    dispatch({ type: DELETE_MEDICINE_SUCCESS });
   } catch (error) {
-    dispatch({ type: PUT_ALL_MEDICINE_FAIL });
+    dispatch({ type: DELETE_MEDICINE_FAIL });
   }
 };
 
@@ -64,6 +86,13 @@ export default (state = initialState, action) => {
     case PUT_ALL_MEDICINE_SUCCESS:
       return { ...state, editMedicineList: action.payload, areFetching: false };
     case PUT_ALL_MEDICINE_FAIL:
+      return { ...state, error: true, areFetching: false };
+
+    case DELETE_MEDICINE_START:
+      return { ...state, error: false, areFetching: true };
+    case DELETE_MEDICINE_SUCCESS:
+      return { ...state, editMedicineList: action.payload, areFetching: false };
+    case DELETE_MEDICINE_FAIL:
       return { ...state, error: true, areFetching: false };
 
     default:

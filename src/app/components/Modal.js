@@ -1,19 +1,11 @@
 import React from 'react';
 import { Button, Modal, ModalFooter, Row } from 'reactstrap';
 
-const DeleteModalModule = ({
-  isDeleteModalButtonClicked,
-  onModalClick,
-  onDeleteConfirmClick,
-  setModal,
-  medicineList,
-  children,
-  onCancelClick,
-}) => (
+const ModalModule = ({ setModal, Children, onCancelClick, onUpdateClick }) => (
   <Row>
     <div>
       <Modal isOpen={setModal}>
-        {children}
+        <Children />
         <ModalFooter>
           <Button
             className='btn-round'
@@ -25,7 +17,7 @@ const DeleteModalModule = ({
           <Button
             color='primary'
             className='btn-round'
-            onClick={(e) => onDeleteConfirmClick(e)}
+            onClick={(e) => onUpdateClick(e)}
           >
             Submit
           </Button>
@@ -35,4 +27,4 @@ const DeleteModalModule = ({
   </Row>
 );
 
-export default DeleteModalModule;
+export default ModalModule;

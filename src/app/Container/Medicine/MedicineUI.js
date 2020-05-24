@@ -14,42 +14,44 @@ import {
   Button,
 } from 'reactstrap';
 
-const MedicineList = ({ medicineList, onEditClick }) => {
+const MedicineList = ({ medicineList, onUpdateClick, onDeleteClick }) => {
   const renderMedicine =
     medicineList &&
     medicineList.records &&
     medicineList.records.map((list) => (
-      <tr>
-        <th scope='row'>
-          <Media className='align-items-center'>
-            <Media>
-              <span className='mb-0 text-sm'>{list.name}</span>
+      <React.Fragment key={list.id}>
+        <tr>
+          <th scope='row'>
+            <Media className='align-items-center'>
+              <Media>
+                <span className='mb-0 text-sm'>{list.name}</span>
+              </Media>
             </Media>
-          </Media>
-        </th>
-        <td className='text-right'>
-          <UncontrolledDropdown>
-            <DropdownToggle
-              className='btn-icon-only text-light'
-              href='#pablo'
-              role='button'
-              size='sm'
-              color=''
-              onClick={(e) => e.preventDefault()}
-            >
-              <i className='fas fa-ellipsis-v' />
-            </DropdownToggle>
-            <DropdownMenu className='dropdown-menu-arrow' right>
-              <DropdownItem onClick={(e) => onEditClick(e, list.id)}>
-                Update
-              </DropdownItem>
-              <DropdownItem onClick={(e) => e.preventDefault()}>
-                Delete
-              </DropdownItem>
-            </DropdownMenu>
-          </UncontrolledDropdown>
-        </td>
-      </tr>
+          </th>
+          <td className='text-right'>
+            <UncontrolledDropdown>
+              <DropdownToggle
+                className='btn-icon-only text-light'
+                href='#pablo'
+                role='button'
+                size='sm'
+                color=''
+                onClick={(e) => e.preventDefault()}
+              >
+                <i className='fas fa-ellipsis-v' />
+              </DropdownToggle>
+              <DropdownMenu className='dropdown-menu-arrow' right>
+                <DropdownItem onClick={(e) => onUpdateClick(e, list.id)}>
+                  Update
+                </DropdownItem>
+                <DropdownItem onClick={(e) => onDeleteClick(e, list.id)}>
+                  Delete
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          </td>
+        </tr>
+      </React.Fragment>
     ));
   return (
     <>
