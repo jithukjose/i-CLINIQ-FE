@@ -1,2 +1,2 @@
-import DoctorContainer from './DoctorContainer';
-export default DoctorContainer;
+import MultipleImageUploadComponent from './DoctorContainer';
+export default MultipleImageUploadComponent;

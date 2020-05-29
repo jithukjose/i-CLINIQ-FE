@@ -1,595 +1,137 @@
-import React from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-// reactstrap components
+import AppointmentList from './AppointmentUI';
+// import ModalModule from '../../components/Modal';
+import AppointmentDetailModal from '../Appointments/AppointmentDetailModal';
+import ActionProceedModal from '../../components/ActionProceedModal';
+import PaginationContainer from '../../components/Pagination';
+import { fetchAppointmentList, deleteAppointment } from './dux';
+
 import {
-  Card,
   CardHeader,
-  Table,
+  CardTitle,
   Row,
-  Badge,
-  CardFooter,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  Media,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
-  UncontrolledTooltip,
-  Button,
+  Form,
+  Input,
+  FormGroup,
+  CardBody,
+  Col,
+  ModalBody,
 } from 'reactstrap';
 
-class AppointmentContainer extends React.Component {
-  render() {
-    return (
-      <>
-        <div className='content'>
-          <div>
-            {' '}
-            <Button
-              block
-              color='primary'
-              //   onClick={() => this.notify('tr')}
-              style={{ width: '20%' }}
-            >
-              Create Appointment
-            </Button>
-          </div>
-          <div>
-            <Row>
-              <div className='col'>
-                <Card className='shadow'>
-                  <CardHeader className='border-0'>
-                    <h3 className='mb-0'>Appointments</h3>
-                  </CardHeader>
-                  <Table className='align-items-center table-flush' responsive>
-                    <thead className='thead-light'>
-                      <tr>
-                        <th scope='col'>Patient Name</th>
-                        <th scope='col'>Assigned To</th>
-                        <th scope='col'>Created At</th>
-                        <th scope='col'>Completed</th>
+const AppointmentContainer = () => {
+  const [isModalopen, setModal] = useState(false);
+  const [confirmModal, setConfirmModal] = useState(false);
+  const [filteredDetail, setFilteredDetail] = useState([{}]);
+  const [deleteId, setDeleteId] = useState();
+  // const [updatedName, setUpdatedName] = useState();
+  // // const [medBeforeEdit, SetMedBeforeEdit] = useState();
 
-                        <th scope='col' />
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope='row'>
-                          <Media className='align-items-center'>
-                            <Media>
-                              <span className='mb-0 text-sm'>
-                                Argon Design System
-                              </span>
-                            </Media>
-                          </Media>
-                        </th>
-                        <td>$2,500 USD</td>
-                        <td>
-                          <Badge color='' className='badge-dot mr-4'>
-                            <i className='bg-warning' />
-                            pending
-                          </Badge>
-                        </td>
-                        <td>75</td>
+  const appointmentList = useSelector(
+    (state) => state.appointmentReducer.appointmentList
+  );
+  const dispatch = useDispatch();
 
-                        <td className='text-right'>
-                          <UncontrolledDropdown>
-                            <DropdownToggle
-                              className='btn-icon-only text-light'
-                              href='#pablo'
-                              role='button'
-                              size='sm'
-                              color=''
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <i className='fas fa-ellipsis-v' />
-                            </DropdownToggle>
-                            <DropdownMenu className='dropdown-menu-arrow' right>
-                              <DropdownItem
-                                href='#pablo'
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                More details
-                              </DropdownItem>
-                              <DropdownItem
-                                href='#pablo'
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                Edit
-                              </DropdownItem>
-                              <DropdownItem
-                                href='#pablo'
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                Delete
-                              </DropdownItem>
-                            </DropdownMenu>
-                          </UncontrolledDropdown>
-                        </td>
-                      </tr>
+  useEffect(() => {
+    dispatch(fetchAppointmentList);
+    // eslint-disable-next-line
+  }, []);
+  const onDetailClick = useCallback(
+    (event, id) => {
+      setModal((prev) => !prev);
+      const details =
+        appointmentList &&
+        appointmentList.records.filter((listItem) => listItem.id === id);
 
-                      <tr>
-                        <th scope='row'>
-                          <Media className='align-items-center'>
-                            <a
-                              className='avatar rounded-circle mr-3'
-                              href='#pablo'
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <img
-                                alt='...'
-                                // src={require('assets/img/theme/sketch.jpg')}
-                              />
-                            </a>
-                            <Media>
-                              <span className='mb-0 text-sm'>
-                                Black Dashboard
-                              </span>
-                            </Media>
-                          </Media>
-                        </th>
-                        <td>$3,150 USD</td>
-                        <td>
-                          <Badge color='' className='badge-dot mr-4'>
-                            <i className='bg-danger' />
-                            delayed
-                          </Badge>
-                        </td>
-                        <td>
-                          <div className='avatar-group'>
-                            <a
-                              className='avatar avatar-sm'
-                              href='#pablo'
-                              id='tooltip753056318'
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <img
-                                alt='...'
-                                className='rounded-circle'
-                                // src={require('assets/img/theme/team-1-800x800.jpg')}
-                              />
-                            </a>
-                            <UncontrolledTooltip
-                              delay={0}
-                              target='tooltip753056318'
-                            >
-                              Ryan Tompson
-                            </UncontrolledTooltip>
-                            <a
-                              className='avatar avatar-sm'
-                              href='#pablo'
-                              id='tooltip441753266'
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <img
-                                alt='...'
-                                className='rounded-circle'
-                                // src={require('assets/img/theme/team-2-800x800.jpg')}
-                              />
-                            </a>
-                            <UncontrolledTooltip
-                              delay={0}
-                              target='tooltip441753266'
-                            >
-                              Romina Hadid
-                            </UncontrolledTooltip>
-                            <a
-                              className='avatar avatar-sm'
-                              href='#pablo'
-                              id='tooltip188462246'
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <img
-                                alt='...'
-                                className='rounded-circle'
-                                // src={require('assets/img/theme/team-3-800x800.jpg')}
-                              />
-                            </a>
-                            <UncontrolledTooltip
-                              delay={0}
-                              target='tooltip188462246'
-                            >
-                              Alexander Smith
-                            </UncontrolledTooltip>
-                            <a
-                              className='avatar avatar-sm'
-                              href='#pablo'
-                              id='tooltip621168444'
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <img
-                                alt='...'
-                                className='rounded-circle'
-                                // src={require('assets/img/theme/team-4-800x800.jpg')}
-                              />
-                            </a>
-                            <UncontrolledTooltip
-                              delay={0}
-                              target='tooltip621168444'
-                            >
-                              Jessica Doe
-                            </UncontrolledTooltip>
-                          </div>
-                        </td>
+      setFilteredDetail(details);
+    },
+    // eslint-disable-next-line
+    [appointmentList]
+  );
 
-                        <td className='text-right'>
-                          <UncontrolledDropdown>
-                            <DropdownToggle
-                              className='btn-icon-only text-light'
-                              href='#pablo'
-                              role='button'
-                              size='sm'
-                              color=''
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <i className='fas fa-ellipsis-v' />
-                            </DropdownToggle>
-                            <DropdownMenu className='dropdown-menu-arrow' right>
-                              <DropdownItem
-                                href='#pablo'
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                Action
-                              </DropdownItem>
-                              <DropdownItem
-                                href='#pablo'
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                Another action
-                              </DropdownItem>
-                              <DropdownItem
-                                href='#pablo'
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                Something else here
-                              </DropdownItem>
-                            </DropdownMenu>
-                          </UncontrolledDropdown>
-                        </td>
-                      </tr>
+  // const onUpdateClick = useCallback(
+  //   (event, id) => {
+  //     setModal((prev) => !prev);
 
-                      <tr>
-                        <th scope='row'>
-                          <Media className='align-items-center'>
-                            <a
-                              className='avatar rounded-circle mr-3'
-                              href='#pablo'
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <img
-                                alt='...'
-                                // src={require('assets/img/theme/react.jpg')}
-                              />
-                            </a>
-                            <Media>
-                              <span className='mb-0 text-sm'>
-                                React Material Dashboard
-                              </span>
-                            </Media>
-                          </Media>
-                        </th>
-                        <td>$4,400 USD</td>
-                        <td>
-                          <Badge color='' className='badge-dot'>
-                            <i className='bg-info' />
-                            on schedule
-                          </Badge>
-                        </td>
-                        <td>
-                          <div className='avatar-group'>
-                            <a
-                              className='avatar avatar-sm'
-                              href='#pablo'
-                              id='tooltip875258217'
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <img
-                                alt='...'
-                                className='rounded-circle'
-                                // src={require('assets/img/theme/team-1-800x800.jpg')}
-                              />
-                            </a>
-                            <UncontrolledTooltip
-                              delay={0}
-                              target='tooltip875258217'
-                            >
-                              Ryan Tompson
-                            </UncontrolledTooltip>
-                            <a
-                              className='avatar avatar-sm'
-                              href='#pablo'
-                              id='tooltip834416663'
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <img
-                                alt='...'
-                                className='rounded-circle'
-                                // src={require('assets/img/theme/team-2-800x800.jpg')}
-                              />
-                            </a>
-                            <UncontrolledTooltip
-                              delay={0}
-                              target='tooltip834416663'
-                            >
-                              Romina Hadid
-                            </UncontrolledTooltip>
-                            <a
-                              className='avatar avatar-sm'
-                              href='#pablo'
-                              id='tooltip372449339'
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <img
-                                alt='...'
-                                className='rounded-circle'
-                                // src={require('assets/img/theme/team-3-800x800.jpg')}
-                              />
-                            </a>
-                            <UncontrolledTooltip
-                              delay={0}
-                              target='tooltip372449339'
-                            >
-                              Alexander Smith
-                            </UncontrolledTooltip>
-                            <a
-                              className='avatar avatar-sm'
-                              href='#pablo'
-                              id='tooltip108714769'
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <img
-                                alt='...'
-                                className='rounded-circle'
-                                // src={require('assets/img/theme/team-4-800x800.jpg')}
-                              />
-                            </a>
-                            <UncontrolledTooltip
-                              delay={0}
-                              target='tooltip108714769'
-                            >
-                              Jessica Doe
-                            </UncontrolledTooltip>
-                          </div>
-                        </td>
+  //     const updatedItem =
+  //       medList && medList.records.filter((listItem) => listItem.id === id);
+  //     // dispatch(editMedicine(updatedItem[0].id));
+  //     const medicineName = updatedItem[0].name;
 
-                        <td className='text-right'>
-                          <UncontrolledDropdown>
-                            <DropdownToggle
-                              className='btn-icon-only text-light'
-                              href='#pablo'
-                              role='button'
-                              size='sm'
-                              color=''
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <i className='fas fa-ellipsis-v' />
-                            </DropdownToggle>
-                            <DropdownMenu className='dropdown-menu-arrow' right>
-                              <DropdownItem
-                                href='#pablo'
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                Action
-                              </DropdownItem>
-                              <DropdownItem
-                                href='#pablo'
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                Another action
-                              </DropdownItem>
-                              <DropdownItem
-                                href='#pablo'
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                Something else here
-                              </DropdownItem>
-                            </DropdownMenu>
-                          </UncontrolledDropdown>
-                        </td>
-                      </tr>
+  //     setUpdatedName(medicineName);
+  //   },
+  //   // eslint-disable-next-line
+  //   [medList]
+  // );
+  // const onEditChangeHandler = useCallback((e) => {
+  //   setUpdatedName(e.target.value);
+  //   console.log(setUpdatedName, 'ppppppp');
+  // }, []);
 
-                      <tr>
-                        <th scope='row'>
-                          <Media className='align-items-center'>
-                            <a
-                              className='avatar rounded-circle mr-3'
-                              href='#pablo'
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <img
-                                alt='...'
-                                // src={require('assets/img/theme/vue.jpg')}
-                              />
-                            </a>
-                            <Media>
-                              <span className='mb-0 text-sm'>
-                                Vue Paper UI Kit PRO
-                              </span>
-                            </Media>
-                          </Media>
-                        </th>
-                        <td>$2,200 USD</td>
-                        <td>
-                          <Badge color='' className='badge-dot mr-4'>
-                            <i className='bg-success' />
-                            completed
-                          </Badge>
-                        </td>
-                        <td>
-                          <div className='avatar-group'>
-                            <a
-                              className='avatar avatar-sm'
-                              href='#pablo'
-                              id='tooltip664029969'
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <img
-                                alt='...'
-                                className='rounded-circle'
-                                // src={require('assets/img/theme/team-1-800x800.jpg')}
-                              />
-                            </a>
-                            <UncontrolledTooltip
-                              delay={0}
-                              target='tooltip664029969'
-                            >
-                              Ryan Tompson
-                            </UncontrolledTooltip>
-                            <a
-                              className='avatar avatar-sm'
-                              href='#pablo'
-                              id='tooltip806693074'
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <img
-                                alt='...'
-                                className='rounded-circle'
-                                // src={require('assets/img/theme/team-2-800x800.jpg')}
-                              />
-                            </a>
-                            <UncontrolledTooltip
-                              delay={0}
-                              target='tooltip806693074'
-                            >
-                              Romina Hadid
-                            </UncontrolledTooltip>
-                            <a
-                              className='avatar avatar-sm'
-                              href='#pablo'
-                              id='tooltip844096937'
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <img
-                                alt='...'
-                                className='rounded-circle'
-                                // src={require('assets/img/theme/team-3-800x800.jpg')}
-                              />
-                            </a>
-                            <UncontrolledTooltip
-                              delay={0}
-                              target='tooltip844096937'
-                            >
-                              Alexander Smith
-                            </UncontrolledTooltip>
-                            <a
-                              className='avatar avatar-sm'
-                              href='#pablo'
-                              id='tooltip757459971'
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <img
-                                alt='...'
-                                className='rounded-circle'
-                                // src={require('assets/img/theme/team-4-800x800.jpg')}
-                              />
-                            </a>
-                            <UncontrolledTooltip
-                              delay={0}
-                              target='tooltip757459971'
-                            >
-                              Jessica Doe
-                            </UncontrolledTooltip>
-                          </div>
-                        </td>
+  // //on delete button click
+  const onDeleteClick = useCallback((event, id) => {
+    setConfirmModal((prev) => !prev);
+    setDeleteId(id);
+  }, []);
+  // //conformation for delete click
+  const onYesBtnClick = useCallback(
+    () => {
+      dispatch(deleteAppointment(deleteId));
+      setConfirmModal((prev) => !prev);
+      dispatch(fetchAppointmentList);
+    },
+    // eslint-disable-next-line
+    [deleteId, fetchAppointmentList] // add as a dependency here
+  );
 
-                        <td className='text-right'>
-                          <UncontrolledDropdown>
-                            <DropdownToggle
-                              className='btn-icon-only text-light'
-                              href='#pablo'
-                              role='button'
-                              size='sm'
-                              color=''
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <i className='fas fa-ellipsis-v' />
-                            </DropdownToggle>
-                            <DropdownMenu className='dropdown-menu-arrow' right>
-                              <DropdownItem
-                                href='#pablo'
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                Action
-                              </DropdownItem>
-                              <DropdownItem
-                                href='#pablo'
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                Another action
-                              </DropdownItem>
-                              <DropdownItem
-                                href='#pablo'
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                Something else here
-                              </DropdownItem>
-                            </DropdownMenu>
-                          </UncontrolledDropdown>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                  <CardFooter className='py-4'>
-                    <nav aria-label='...'>
-                      <Pagination
-                        className='pagination justify-content-end mb-0'
-                        listClassName='justify-content-end mb-0'
-                      >
-                        <PaginationItem className='disabled'>
-                          <PaginationLink
-                            href='#pablo'
-                            onClick={(e) => e.preventDefault()}
-                            tabIndex='-1'
-                          >
-                            <i className='fas fa-angle-left' />
-                            <span className='sr-only'>Previous</span>
-                          </PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem className='active'>
-                          <PaginationLink
-                            href='#pablo'
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            1
-                          </PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                          <PaginationLink
-                            href='#pablo'
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            2 <span className='sr-only'>(current)</span>
-                          </PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                          <PaginationLink
-                            href='#pablo'
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            3
-                          </PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                          <PaginationLink
-                            href='#pablo'
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            <i className='fas fa-angle-right' />
-                            <span className='sr-only'>Next</span>
-                          </PaginationLink>
-                        </PaginationItem>
-                      </Pagination>
-                    </nav>
-                  </CardFooter>
-                </Card>
-              </div>
-            </Row>
-          </div>
-        </div>
-      </>
-    );
-  }
-}
+  const onCancelClick = () => {
+    if (isModalopen === true) {
+      setModal(!isModalopen);
+    } else if (confirmModal === true) {
+      setConfirmModal((prev) => !prev);
+    }
+  };
+  // const onAddMedicineClick = () => {
+  //   setModal((prev) => !prev);
+  // };
+
+  return (
+    <>
+      <div className='content'>
+        <AppointmentList
+          appointmentList={appointmentList}
+          onDetailClick={onDetailClick}
+          onDeleteClick={onDeleteClick}
+        />
+        <AppointmentDetailModal
+          setModal={isModalopen}
+          onCancelClick={onCancelClick}
+          filteredDetail={filteredDetail}
+          appointmentList={appointmentList}
+        />
+        {/* <MedicineList
+          appointmentList={appointmentList}
+          onUpdateClick={onUpdateClick}
+          onDeleteClick={onDeleteClick}
+          onAddMedicineClick={onAddMedicineClick}
+        /> */}
+        <PaginationContainer />
+        {/* <ModalModule
+          Children={Children}
+          setModal={isModalopen}
+          // onCancelClick={onCancelClick}
+          // onUpdateClick={onUpdateClick}
+          // onAddMedicineClick={onAddMedicineClick}
+        /> */}
+        <ActionProceedModal
+          setModal={confirmModal}
+          onCancelClick={onCancelClick}
+          onYesBtnClick={onYesBtnClick}
+        />
+      </div>
+    </>
+  );
+};
+
 export default AppointmentContainer;

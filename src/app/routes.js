@@ -14,6 +14,15 @@ import MedicalTest from './Container/MedicalTests';
 import Profile from './Container/Profile';
 import Appointments from './Container/Appointments';
 
+import PatientAppointment from './Container/D-PatientAppointment';
+import CreatePatient from './Container/D-CreatePatient';
+import CreateAppointment from './Container/D-CreateAppointment';
+import Prescription from './Container/D-Prescription';
+import Observation from './Container/D-Observation';
+
+import UpcommingTest from './Container/L-UpcommingTest';
+import UpdateResult from './Container/L-UpdateResult';
+
 var routes = [
   {
     path: '/dashboard',
@@ -23,7 +32,7 @@ var routes = [
     layout: '/admin',
   },
   {
-    path: '/doctor',
+    path: '/doctors',
     name: 'DOCTOR',
     icon: 'fas fa-user-md',
     component: Doctor,
@@ -64,8 +73,62 @@ var routes = [
     component: Profile,
     layout: '/admin',
   },
+  {
+    path: '/myAppointments',
+    name: 'D-Appointment',
+    icon: 'fas fa-newspaper',
+    component: PatientAppointment,
+    layout: '/doctor',
+  },
 
+  {
+    path: '/createPatient',
+    name: 'D-createPatient',
+    icon: 'fas fa-newspaper',
+    component: CreatePatient,
+    layout: '/doctor',
+  },
+  {
+    path: '/createAppointment',
+    name: 'D-createAppointmen',
+    icon: 'fas fa-newspaper',
+    component: CreateAppointment,
+    layout: '/doctor',
+  },
+
+  {
+    path: '/prescription',
+    name: 'D-Prescription',
+    icon: 'fas fa-newspaper',
+    component: Prescription,
+    layout: '/doctor',
+  },
+
+  {
+    path: '/observations',
+    name: 'D-Observations',
+    icon: 'fas fa-newspaper',
+    component: Observation,
+    layout: '/doctor',
+  },
+
+  {
+    path: '/upcommingTests',
+    name: 'L-upcomming Test',
+    icon: 'nc-icon nc-single-02',
+    component: UpcommingTest,
+    layout: '/lab-technician',
+  },
+
+  {
+    path: '/UpdateResult',
+    name: 'L-Update Result',
+    icon: 'nc-icon nc-single-02',
+    component: UpdateResult,
+    layout: '/lab-technician',
+  },
   // {
+
   //   path: '/user-page',
   //   name: 'Profile',
   //   icon: 'nc-icon nc-single-02',
