@@ -41,11 +41,14 @@ class Sidebar extends React.Component {
         <div className='logo'>
           <a href='#a' className='simple-text logo-mini'>
             <div className='logo-img'>
-              <img src={logo} alt='react-logo' />
+              <img
+                src='https://lh3.googleusercontent.com/k4QUoGXoXSFfxc5Y55fK4x-7F4dqRgJdZsQhGHgmDNM8MWDikxQ_uisFve6ByMAGjIO8'
+                alt='react-logo'
+              />
             </div>
           </a>
           <a href='#a' className='simple-text logo-normal'>
-            Health App
+            i-cliniq
           </a>
         </div>
         <div className='sidebar-wrapper' ref={this.sidebar}>

@@ -7,7 +7,7 @@ const ActionProceedModule = ({ onCancelClick, onYesBtnClick, setModal }) => (
       <Modal isOpen={setModal}>
         <ModalBody style={{ fontFamily: 'Varela Round' }}>
           <i
-            class='fas fa-times-circle fa-4x text-danger'
+            className='fas fa-times-circle fa-4x text-danger'
             style={{ paddingLeft: '45%' }}
           ></i>
           <h4

@@ -1,118 +1,137 @@
-import React from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-// reactstrap components
+import AppointmentList from './AppointmentUI';
+// import ModalModule from '../../components/Modal';
+import AppointmentDetailModal from '../Appointments/AppointmentDetailModal';
+import ActionProceedModal from '../../components/ActionProceedModal';
+import PaginationContainer from '../../components/Pagination';
+import { fetchAppointmentList, deleteAppointment } from './dux';
+
 import {
-  Card,
   CardHeader,
-  Table,
+  CardTitle,
   Row,
-  Badge,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  Media,
-  Button,
+  Form,
+  Input,
+  FormGroup,
+  CardBody,
+  Col,
+  ModalBody,
 } from 'reactstrap';
 
-class AppointmentContainer extends React.Component {
-  render() {
-    return (
-      <>
-        <div className='content'>
-          <div>
-            {' '}
-            <Button
-              block
-              color='primary'
-              //   onClick={() => this.notify('tr')}
-              style={{ width: '20%' }}
-            >
-              Create Appointment
-            </Button>
-          </div>
-          <div>
-            <Row>
-              <div className='col'>
-                <Card className='shadow'>
-                  <CardHeader className='border-0'>
-                    <h3 className='mb-0'>Appointments</h3>
-                  </CardHeader>
-                  <Table className='align-items-center table-flush' responsive>
-                    <thead className='thead-light'>
-                      <tr>
-                        <th scope='col'>Patient Name</th>
-                        <th scope='col'>Assigned To</th>
-                        <th scope='col'>Created At</th>
-                        <th scope='col'>Completed</th>
+const AppointmentContainer = () => {
+  const [isModalopen, setModal] = useState(false);
+  const [confirmModal, setConfirmModal] = useState(false);
+  const [filteredDetail, setFilteredDetail] = useState([{}]);
+  const [deleteId, setDeleteId] = useState();
+  // const [updatedName, setUpdatedName] = useState();
+  // // const [medBeforeEdit, SetMedBeforeEdit] = useState();
 
-                        <th scope='col' />
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope='row'>
-                          <Media className='align-items-center'>
-                            <Media>
-                              <span className='mb-0 text-sm'>
-                                Argon Design System
-                              </span>
-                            </Media>
-                          </Media>
-                        </th>
-                        <td>$2,500 USD</td>
-                        <td>
-                          <Badge color='' className='badge-dot mr-4'>
-                            <i className='bg-warning' />
-                            pending
-                          </Badge>
-                        </td>
-                        <td>75</td>
+  const appointmentList = useSelector(
+    (state) => state.appointmentReducer.appointmentList
+  );
+  const dispatch = useDispatch();
 
-                        <td className='text-right'>
-                          <UncontrolledDropdown>
-                            <DropdownToggle
-                              className='btn-icon-only text-light'
-                              href='#pablo'
-                              role='button'
-                              size='sm'
-                              color=''
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <i className='fas fa-ellipsis-v' />
-                            </DropdownToggle>
-                            <DropdownMenu className='dropdown-menu-arrow' right>
-                              <DropdownItem
-                                href='#pablo'
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                More details
-                              </DropdownItem>
-                              <DropdownItem
-                                href='#pablo'
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                Edit
-                              </DropdownItem>
-                              <DropdownItem
-                                href='#pablo'
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                Delete
-                              </DropdownItem>
-                            </DropdownMenu>
-                          </UncontrolledDropdown>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card>
-              </div>
-            </Row>
-          </div>
-        </div>
-      </>
-    );
-  }
-}
+  useEffect(() => {
+    dispatch(fetchAppointmentList);
+    // eslint-disable-next-line
+  }, []);
+  const onDetailClick = useCallback(
+    (event, id) => {
+      setModal((prev) => !prev);
+      const details =
+        appointmentList &&
+        appointmentList.records.filter((listItem) => listItem.id === id);
+
+      setFilteredDetail(details);
+    },
+    // eslint-disable-next-line
+    [appointmentList]
+  );
+
+  // const onUpdateClick = useCallback(
+  //   (event, id) => {
+  //     setModal((prev) => !prev);
+
+  //     const updatedItem =
+  //       medList && medList.records.filter((listItem) => listItem.id === id);
+  //     // dispatch(editMedicine(updatedItem[0].id));
+  //     const medicineName = updatedItem[0].name;
+
+  //     setUpdatedName(medicineName);
+  //   },
+  //   // eslint-disable-next-line
+  //   [medList]
+  // );
+  // const onEditChangeHandler = useCallback((e) => {
+  //   setUpdatedName(e.target.value);
+  //   console.log(setUpdatedName, 'ppppppp');
+  // }, []);
+
+  // //on delete button click
+  const onDeleteClick = useCallback((event, id) => {
+    setConfirmModal((prev) => !prev);
+    setDeleteId(id);
+  }, []);
+  // //conformation for delete click
+  const onYesBtnClick = useCallback(
+    () => {
+      dispatch(deleteAppointment(deleteId));
+      setConfirmModal((prev) => !prev);
+      dispatch(fetchAppointmentList);
+    },
+    // eslint-disable-next-line
+    [deleteId, fetchAppointmentList] // add as a dependency here
+  );
+
+  const onCancelClick = () => {
+    if (isModalopen === true) {
+      setModal(!isModalopen);
+    } else if (confirmModal === true) {
+      setConfirmModal((prev) => !prev);
+    }
+  };
+  // const onAddMedicineClick = () => {
+  //   setModal((prev) => !prev);
+  // };
+
+  return (
+    <>
+      <div className='content'>
+        <AppointmentList
+          appointmentList={appointmentList}
+          onDetailClick={onDetailClick}
+          onDeleteClick={onDeleteClick}
+        />
+        <AppointmentDetailModal
+          setModal={isModalopen}
+          onCancelClick={onCancelClick}
+          filteredDetail={filteredDetail}
+          appointmentList={appointmentList}
+        />
+        {/* <MedicineList
+          appointmentList={appointmentList}
+          onUpdateClick={onUpdateClick}
+          onDeleteClick={onDeleteClick}
+          onAddMedicineClick={onAddMedicineClick}
+        /> */}
+        <PaginationContainer />
+        {/* <ModalModule
+          Children={Children}
+          setModal={isModalopen}
+          // onCancelClick={onCancelClick}
+          // onUpdateClick={onUpdateClick}
+          // onAddMedicineClick={onAddMedicineClick}
+        /> */}
+        <ActionProceedModal
+          setModal={confirmModal}
+          onCancelClick={onCancelClick}
+          onYesBtnClick={onYesBtnClick}
+        />
+      </div>
+    </>
+  );
+};
+
 export default AppointmentContainer;

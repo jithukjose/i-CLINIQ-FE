@@ -5,7 +5,7 @@ import MedicineList from './MedicineUI';
 import ModalModule from '../../components/Modal';
 import ActionProceedModal from '../../components/ActionProceedModal';
 import PaginationContainer from '../../components/Pagination';
-import { fetchMedicineList, editMedicine, deleteMedicine } from './dux';
+import { fetchMedicineList, deleteMedicine } from './dux';
 
 import {
   CardHeader,
@@ -24,7 +24,7 @@ const MedicineContainer = () => {
   const [confirmModal, setConfirmModal] = useState(false);
   const [deleteId, setDeleteId] = useState();
   const [updatedName, setUpdatedName] = useState();
-  const [medBeforeEdit, SetMedBeforeEdit] = useState();
+  // const [medBeforeEdit, SetMedBeforeEdit] = useState();
 
   const medList = useSelector((state) => state.medicineReducer.MedicineList);
   const dispatch = useDispatch();
@@ -43,14 +43,14 @@ const MedicineContainer = () => {
       // dispatch(editMedicine(updatedItem[0].id));
       const medicineName = updatedItem[0].name;
 
-      SetMedBeforeEdit(medicineName);
+      setUpdatedName(medicineName);
     },
     // eslint-disable-next-line
     [medList]
   );
   const onEditChangeHandler = useCallback((e) => {
     setUpdatedName(e.target.value);
-    console.log(setUpdatedName, 'pppppp');
+    console.log(setUpdatedName, 'ppppppp');
   }, []);
 
   //on delete button click
@@ -63,9 +63,10 @@ const MedicineContainer = () => {
     () => {
       dispatch(deleteMedicine(deleteId));
       setConfirmModal((prev) => !prev);
+      dispatch(fetchMedicineList);
     },
     // eslint-disable-next-line
-    [deleteId] // add as a dependency here
+    [deleteId, fetchMedicineList] // add as a dependency here
   );
 
   const onCancelClick = () => {
@@ -75,9 +76,11 @@ const MedicineContainer = () => {
       setConfirmModal((prev) => !prev);
     }
   };
+  const onAddMedicineClick = () => {
+    setModal((prev) => !prev);
+  };
 
   const Children = () => {
-    console.log(medBeforeEdit, 'pppppppppppppppp');
     return (
       <ModalBody style={{ fontFamily: 'Varela Round' }}>
         <CardHeader>
@@ -90,7 +93,7 @@ const MedicineContainer = () => {
                 <FormGroup>
                   <label>Medicine Name </label>
                   <Input
-                    defaultValue={medBeforeEdit}
+                    value={updatedName}
                     placeholder='Medicine Name'
                     type='text'
                     onChange={(e) => onEditChangeHandler(e)}
@@ -110,8 +113,9 @@ const MedicineContainer = () => {
       <div className='content'>
         <MedicineList
           medicineList={medList}
-          onUpdateClick={onUpdateClick}
+          onCancelClick={onCancelClick}
           onDeleteClick={onDeleteClick}
+          onAddMedicineClick={onAddMedicineClick}
         />
         <PaginationContainer />
         <ModalModule
@@ -119,6 +123,7 @@ const MedicineContainer = () => {
           setModal={isModalopen}
           onCancelClick={onCancelClick}
           onUpdateClick={onUpdateClick}
+          onAddMedicineClick={onAddMedicineClick}
         />
         <ActionProceedModal
           setModal={confirmModal}

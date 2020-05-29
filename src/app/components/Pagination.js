@@ -13,22 +13,18 @@ class PaginationContainer extends React.Component {
             listClassName='justify-content-end mb-0'
           >
             <PaginationItem className='disabled'>
-              <PaginationLink
-                href='#pablo'
-                onClick={(e) => e.preventDefault()}
-                tabIndex='-1'
-              >
+              <PaginationLink onClick={(e) => e.preventDefault()} tabIndex='-1'>
                 <i className='fas fa-angle-left' />
                 <span className='sr-only'>Previous</span>
               </PaginationLink>
             </PaginationItem>
             <PaginationItem className='active'>
-              <PaginationLink href='#pablo' onClick={(e) => e.preventDefault()}>
+              <PaginationLink onClick={(e) => e.preventDefault()}>
                 1
               </PaginationLink>
             </PaginationItem>
             <PaginationItem>
-              <PaginationLink href='#pablo' onClick={(e) => e.preventDefault()}>
+              <PaginationLink onClick={(e) => e.preventDefault()}>
                 2 <span className='sr-only'>(current)</span>
               </PaginationLink>
             </PaginationItem>

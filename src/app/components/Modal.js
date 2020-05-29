@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Modal, ModalFooter, Row } from 'reactstrap';
 
-const ModalModule = ({ setModal, Children, onCancelClick, onUpdateClick }) => (
+const ModalModule = ({ setModal, Children, onCancelClick }) => (
   <Row>
     <div>
       <Modal isOpen={setModal}>
@@ -17,7 +17,7 @@ const ModalModule = ({ setModal, Children, onCancelClick, onUpdateClick }) => (
           <Button
             color='primary'
             className='btn-round'
-            onClick={(e) => onUpdateClick(e)}
+            onClick={(e) => onCancelClick(e)}
           >
             Submit
           </Button>

@@ -14,16 +14,12 @@ import {
   Button,
 } from 'reactstrap';
 
-const MedicineList = ({
-  medicineList,
-  onUpdateClick,
-  onDeleteClick,
-  onAddMedicineClick,
-}) => {
-  const renderMedicine =
-    medicineList &&
-    medicineList.records &&
-    medicineList.records.map((list) => (
+const MedicalTestList = ({ medicalTestList, onDeleteClick, onUpdateClick }) => {
+  console.log(medicalTestList, 'jkjkjk');
+  const renderMedicalTest =
+    medicalTestList &&
+    medicalTestList.records &&
+    medicalTestList.records.map((list) => (
       <React.Fragment key={list.id}>
         <tr>
           <th scope='row'>
@@ -41,7 +37,7 @@ const MedicineList = ({
                 role='button'
                 size='sm'
                 color=''
-                onClick={(e) => e.preventDefault()}
+                // onClick={(e) => e.preventDefault()}
               >
                 <i className='fas fa-ellipsis-v' />
               </DropdownToggle>
@@ -66,9 +62,9 @@ const MedicineList = ({
           color='primary'
           //   onClick={() => this.notify('tr')}
           style={{ width: '20%' }}
-          onClick={() => onAddMedicineClick()}
+          //   onClick={() => onAddMedicineClick()}
         >
-          Add Medicine
+          Add TESTS
         </Button>
       </div>
       <div>
@@ -86,7 +82,7 @@ const MedicineList = ({
                     <th scope='col'></th>
                   </tr>
                 </thead>
-                <tbody>{renderMedicine}</tbody>
+                <tbody>{renderMedicalTest}</tbody>
               </Table>
             </Card>
           </div>
@@ -95,4 +91,4 @@ const MedicineList = ({
     </>
   );
 };
-export default MedicineList;
+export default MedicalTestList;
