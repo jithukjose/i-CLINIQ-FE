@@ -1,129 +1,138 @@
-import React from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-// reactstrap components
-import {
-  Card,
-  CardHeader,
-  Table,
-  Row,
-  Badge,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  Media,
-  Progress,
-  Button,
-} from 'reactstrap';
+import DoctorDetail from './DoctorUI';
+import DoctorDetailModal from './DoctorDetailModal';
+// import ModalModule from '../../components/Modal';
+// import ActionProceedModal from '../../components/ActionProceedModal';
+import PaginationContainer from '../../components/Pagination';
+import { fetchDoctorAppointment } from './dux';
 
-class DoctorContainer extends React.Component {
-  render() {
-    return (
-      <>
-        <div className='content'>
-          <div>
-            <Button
-              block
-              color='primary'
-              // onClick={() => this.notify('tr')}
-              style={{ width: '20%' }}
-            >
-              Add Doctor
-            </Button>
-          </div>
-          <div>
-            <Row>
-              <div className='col'>
-                <Card className='shadow'>
-                  <CardHeader className='border-0'>
-                    <h3 className='mb-0'>Doctors</h3>
-                  </CardHeader>
-                  <Table className='align-items-center table-flush' responsive>
-                    <thead className='thead-light'>
-                      <tr>
-                        <th scope='col'>Name</th>
-                        <th scope='col'>Appointments</th>
-                        <th scope='col'>Pending</th>
-                        <th scope='col'>Completed</th>
-                        <th scope='col'>Completion</th>
-                        <th scope='col' />
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope='row'>
-                          <Media className='align-items-center'>
-                            <Media>
-                              <span className='mb-0 text-sm'>
-                                Argon Design System
-                              </span>
-                            </Media>
-                          </Media>
-                        </th>
-                        <td>$2,500 USD</td>
-                        <td>
-                          <Badge color='' className='badge-dot mr-4'>
-                            <i className='bg-warning' />
-                            pending
-                          </Badge>
-                        </td>
-                        <td>75</td>
-                        <td>
-                          <div className='d-flex align-items-center'>
-                            <span className='mr-2'>60%</span>
-                            <div>
-                              <Progress
-                                max='100'
-                                value='60'
-                                barClassName='bg-danger'
-                              />
-                            </div>
-                          </div>
-                        </td>
-                        <td className='text-right'>
-                          <UncontrolledDropdown>
-                            <DropdownToggle
-                              className='btn-icon-only text-light'
-                              href='#pablo'
-                              role='button'
-                              size='sm'
-                              color=''
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <i className='fas fa-ellipsis-v' />
-                            </DropdownToggle>
-                            <DropdownMenu className='dropdown-menu-arrow' right>
-                              <DropdownItem
-                                href='#pablo'
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                More details
-                              </DropdownItem>
-                              <DropdownItem
-                                href='#pablo'
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                Edit
-                              </DropdownItem>
-                              <DropdownItem
-                                href='#pablo'
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                Delete
-                              </DropdownItem>
-                            </DropdownMenu>
-                          </UncontrolledDropdown>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card>
-              </div>
-            </Row>
-          </div>
-        </div>
-      </>
-    );
-  }
-}
+const DoctorContainer = () => {
+  const [isModalopen, setModal] = useState(false);
+  const [filteredDetail, setFilteredDetail] = useState([{}]);
+  // const [isModalopen, setModal] = useState(false);
+  const [confirmModal, setConfirmModal] = useState(false);
+  // const [deleteId, setDeleteId] = useState();
+  // const [updatedName, setUpdatedName] = useState();
+  // const [medBeforeEdit, SetMedBeforeEdit] = useState();
+
+  const doctorAppointmentList = useSelector(
+    (state) => state.doctorReducer.doctorAppointment
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchDoctorAppointment);
+    // eslint-disable-next-line
+  }, []);
+
+  const statusCount =
+    doctorAppointmentList &&
+    doctorAppointmentList.records &&
+    doctorAppointmentList.records.map((list) => {
+      if (list.user_test.length == 0) {
+        const count = 0;
+        return count;
+      } else {
+        var pendingCount = 0;
+        list.user_test.map((appointmentList) => {
+          if (appointmentList.status === 'pending') {
+            pendingCount = pendingCount + 1;
+          }
+        });
+      }
+      return pendingCount;
+    });
+  const onDetailClick = useCallback(
+    (event, id) => {
+      setModal((prev) => !prev);
+      const details =
+        doctorAppointmentList &&
+        doctorAppointmentList.records.filter((listItem) => listItem.id === id);
+      console.log(details, 'heree');
+      setFilteredDetail(details);
+    },
+    // eslint-disable-next-line
+    [doctorAppointmentList]
+  );
+  const onCancelClick = () => {
+    if (isModalopen === true) {
+      setModal(!isModalopen);
+    } else if (confirmModal === true) {
+      setConfirmModal((prev) => !prev);
+    }
+  };
+  // const onUpdateClick = useCallback(
+  //   (event, id) => {
+  //     setModal((prev) => !prev);
+
+  //     const updatedItem =
+  //       medList && medList.records.filter((listItem) => listItem.id === id);
+  //     // dispatch(editMedicine(updatedItem[0].id));
+  //     const medicineName = updatedItem[0].name;
+
+  //     setUpdatedName(medicineName);
+  //   },
+  //   // eslint-disable-next-line
+  //   [medList]
+  // );
+  // const onEditChangeHandler = useCallback((e) => {
+  //   setUpdatedName(e.target.value);
+  //   console.log(setUpdatedName, 'ppppppp');
+  // }, []);
+
+  //on delete button click
+  // const onDeleteClick = useCallback((event, id) => {
+  //   setConfirmModal((prev) => !prev);
+  //   setDeleteId(id);
+  // }, []);
+  //conformation for delete click
+  // const onYesBtnClick = useCallback(
+  //   () => {
+  //     dispatch(deleteMedicine(deleteId));
+  //     setConfirmModal((prev) => !prev);
+  //     dispatch(fetchMedicineList);
+  //   },
+  //   // eslint-disable-next-line
+  //   [deleteId, fetchMedicineList] // add as a dependency here
+  // );
+
+  // const onAddMedicineClick = () => {
+  //   setModal((prev) => !prev);
+  // };
+
+  return (
+    <>
+      <div className='content'>
+        <DoctorDetail
+          doctorAppointmentList={doctorAppointmentList}
+          statusCount={statusCount}
+          onDetailClick={onDetailClick}
+        />
+        <DoctorDetailModal
+          setModal={isModalopen}
+          onCancelClick={onCancelClick}
+          filteredDetail={filteredDetail}
+        />
+
+        <PaginationContainer />
+        {/* <ModalModule
+          Children={Children}
+          setModal={isModalopen}
+          onCancelClick={onCancelClick}
+          onUpdateClick={onUpdateClick}
+          onAddMedicineClick={onAddMedicineClick}
+        /> */}
+        {/* <ActionProceedModal
+          setModal={confirmModal}
+          onCancelClick={onCancelClick}
+          onYesBtnClick={onYesBtnClick}
+        /> */}
+      </div>
+    </>
+  );
+};
+
 export default DoctorContainer;
