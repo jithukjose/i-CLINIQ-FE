@@ -1,180 +1,75 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-// reactstrap components
-import { Card, CardBody, CardFooter, CardTitle, Row, Col } from 'reactstrap';
-// core components
+import DashboardCountUI from './DashboardUI';
 
-class Dashboard extends React.Component {
-  render() {
-    return (
-      <>
-        <div className='content'>
-          <Row>
-            <Col lg='3' md='6' sm='6'>
-              <Card className='card-stats' style={{ height: '300px' }}>
-                <CardBody>
-                  <Row>
-                    <Col md='4' xs='5' style={{ paddingLeft: '40%' }}>
-                      <div className='icon-big text-center icon-warning'>
-                        <i className='nc-icon nc-globe text-warning' />
-                      </div>
-                    </Col>
-                    <Col md='8' xs='7' style={{ textAlign: 'center' }}>
-                      <div className='numbers' style={{ paddingTop: '30%' }}>
-                        <div
-                          className='card-category'
-                          style={{ textAlign: 'unset' }}
-                        >
-                          Doctors
-                        </div>
-                        <CardTitle tag='p'>21</CardTitle>
+import {
+  fetchAppointmentCount,
+  fetchMedicineCount,
+  fetchTestCount,
+  fetchDoctorCount,
+  fetchLabtechnicianCount,
+} from './dux';
 
-                        <p />
-                      </div>
-                    </Col>
-                  </Row>
-                </CardBody>
-                <CardFooter>
-                  <hr />
-                  <div className='stats'>
-                    <i className='fas fa-sync-alt' /> Update Now
-                  </div>
-                </CardFooter>
-              </Card>
-            </Col>
-            <Col lg='3' md='6' sm='6'>
-              <Card className='card-stats' style={{ height: '300px' }}>
-                <CardBody>
-                  <Row>
-                    <Col md='4' xs='5' style={{ paddingLeft: '40%' }}>
-                      <div className='icon-big text-center icon-warning'>
-                        <i className='nc-icon nc-globe text-warning' />
-                      </div>
-                    </Col>
-                    <Col md='8' xs='7' style={{ textAlign: 'center' }}>
-                      <div className='numbers' style={{ paddingTop: '30%' }}>
-                        <div
-                          className='card-category'
-                          style={{ textAlign: 'unset' }}
-                        >
-                          Tests
-                        </div>
-                        <CardTitle tag='p'>21</CardTitle>
+const DoctorContainer = () => {
+  const appointmentCount = useSelector(
+    (state) => state.dashboardReducer.appointmentCount
+  );
+  const medicineCount = useSelector(
+    (state) => state.dashboardReducer.medicineCount
+  );
+  const testCount = useSelector((state) => state.dashboardReducer.testCount);
+  const doctorCount = useSelector(
+    (state) => state.dashboardReducer.doctorCount
+  );
+  const labtechnicianCount = useSelector(
+    (state) => state.dashboardReducer.labtechnicianCount
+  );
+  const dispatch = useDispatch();
 
-                        <p />
-                      </div>
-                    </Col>
-                  </Row>
-                </CardBody>
-                <CardFooter>
-                  <hr />
-                  <div className='stats'>
-                    <i className='fas fa-sync-alt' /> Update Now
-                  </div>
-                </CardFooter>
-              </Card>
-            </Col>
-            <Col lg='3' md='6' sm='6'>
-              <Card className='card-stats' style={{ height: '300px' }}>
-                <CardBody>
-                  <Row>
-                    <Col md='4' xs='5' style={{ paddingLeft: '40%' }}>
-                      <div className='icon-big text-center icon-warning'>
-                        <i className='nc-icon nc-globe text-warning' />
-                      </div>
-                    </Col>
-                    <Col md='8' xs='7' style={{ textAlign: 'center' }}>
-                      <div className='numbers' style={{ paddingTop: '30%' }}>
-                        <div
-                          className='card-category'
-                          style={{ textAlign: 'unset' }}
-                        >
-                          Medicines
-                        </div>
-                        <CardTitle tag='p'>21</CardTitle>
+  useEffect(() => {
+    dispatch(fetchAppointmentCount);
+    dispatch(fetchMedicineCount);
+    dispatch(fetchTestCount);
+    dispatch(fetchDoctorCount);
+    dispatch(fetchLabtechnicianCount);
+    // eslint-disable-next-line
+  }, []);
+  console.log(
+    medicineCount &&
+      medicineCount.metaData &&
+      medicineCount.metaData.totalCount,
+    'hereeee'
+  );
+  const appointmentTotalCount =
+    appointmentCount &&
+    appointmentCount.metaData &&
+    appointmentCount.metaData.totalCount;
+  const medicineTotalCount =
+    medicineCount &&
+    medicineCount.metaData &&
+    medicineCount.metaData.totalCount;
+  const testTotalcount =
+    testCount && testCount.metaData && testCount.metaData.totalCount;
+  const doctorTotaCount =
+    doctorCount && doctorCount.metaData && doctorCount.metaData.totalCount;
+  const labtechnicianTotalCount =
+    labtechnicianCount &&
+    labtechnicianCount.metaData &&
+    labtechnicianCount.metaData.totalCount;
+  return (
+    <>
+      <div className='content'>
+        <DashboardCountUI
+          appointmentTotalCount={appointmentTotalCount}
+          medicineTotalCount={medicineTotalCount}
+          testTotalcount={testTotalcount}
+          doctorTotaCount={doctorTotaCount}
+          labtechnicianTotalCount={labtechnicianTotalCount}
+        />
+      </div>
+    </>
+  );
+};
 
-                        <p />
-                      </div>
-                    </Col>
-                  </Row>
-                </CardBody>
-                <CardFooter>
-                  <hr />
-                  <div className='stats'>
-                    <i className='fas fa-sync-alt' /> Update Now
-                  </div>
-                </CardFooter>
-              </Card>
-            </Col>
-            <Col lg='3' md='6' sm='6'>
-              <Card className='card-stats' style={{ height: '300px' }}>
-                <CardBody>
-                  <Row>
-                    <Col md='4' xs='5' style={{ paddingLeft: '40%' }}>
-                      <div className='icon-big text-center icon-warning'>
-                        <i className='nc-icon nc-globe text-warning' />
-                      </div>
-                    </Col>
-                    <Col md='8' xs='7' style={{ textAlign: 'center' }}>
-                      <div className='numbers' style={{ paddingTop: '30%' }}>
-                        <div
-                          className='card-category'
-                          style={{ textAlign: 'unset' }}
-                        >
-                          Lab Technicians
-                        </div>
-                        <CardTitle tag='p'>21</CardTitle>
-
-                        <p />
-                      </div>
-                    </Col>
-                  </Row>
-                </CardBody>
-                <CardFooter>
-                  <hr />
-                  <div className='stats'>
-                    <i className='fas fa-sync-alt' /> Update Now
-                  </div>
-                </CardFooter>
-              </Card>
-            </Col>
-            <Col lg='3' md='6' sm='6'>
-              <Card className='card-stats' style={{ height: '300px' }}>
-                <CardBody>
-                  <Row>
-                    <Col md='4' xs='5' style={{ paddingLeft: '40%' }}>
-                      <div className='icon-big text-center icon-warning'>
-                        <i className='nc-icon nc-globe text-warning' />
-                      </div>
-                    </Col>
-                    <Col md='8' xs='7' style={{ textAlign: 'center' }}>
-                      <div className='numbers' style={{ paddingTop: '30%' }}>
-                        <div
-                          className='card-category'
-                          style={{ textAlign: 'unset' }}
-                        >
-                          Appointments
-                        </div>
-                        <CardTitle tag='p'>21</CardTitle>
-
-                        <p />
-                      </div>
-                    </Col>
-                  </Row>
-                </CardBody>
-                <CardFooter>
-                  <hr />
-                  <div className='stats'>
-                    <i className='fas fa-sync-alt' /> Update Now
-                  </div>
-                </CardFooter>
-              </Card>
-            </Col>
-          </Row>
-        </div>
-      </>
-    );
-  }
-}
-
-export default Dashboard;
+export default DoctorContainer;

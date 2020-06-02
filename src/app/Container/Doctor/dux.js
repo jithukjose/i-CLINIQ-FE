@@ -6,9 +6,9 @@ const GET_ALL_DOCTORDETAIL_FAIL = 'ADMIN/GET_ALL_DOCTORDETAIL_FAIL';
 // const PUT_ALL_DOCTORDETAIL_SUCCESS = 'ADMIN/PUT_ALL_DOCTORDETAIL_SUCCESS';
 // const PUT_ALL_DOCTORDETAIL_FAIL = 'ADMIN/PUT_ALL_DOCTORDETAIL_FAIL';
 
-// const DELETE_DOCTORDETAIL_START = 'ADMIN/DELETE_DOCTORDETAIL_START';
-// const DELETE_DOCTORDETAIL_SUCCESS = 'ADMIN/DELETE_DOCTORDETAIL_SUCCESS';
-// const DELETE_DOCTORDETAIL_FAIL = 'ADMIN/DELETE_DOCTORDETAIL_FAIL';
+const DELETE_DOCTORDETAIL_START = 'ADMIN/DELETE_DOCTORDETAIL_START';
+const DELETE_DOCTORDETAIL_SUCCESS = 'ADMIN/DELETE_DOCTORDETAIL_SUCCESS';
+const DELETE_DOCTORDETAIL_FAIL = 'ADMIN/DELETE_DOCTORDETAIL_FAIL';
 
 export const fetchDoctorAppointment = async (dispatch) => {
   dispatch({ type: GET_ALL_DOCTORDETAIL_START });
@@ -48,24 +48,24 @@ export const fetchDoctorAppointment = async (dispatch) => {
 //   }
 // };
 
-// export const deleteDOCTORDETAIL = (id) => async (dispatch) => {
-//   dispatch({ type: DELETE_DOCTORDETAIL_START });
-//   try {
-//     let url = `http://localhost:5000/api/DOCTORDETAILs/${id}`;
+export const deleteDoctorDetail = (id) => async (dispatch) => {
+  dispatch({ type: DELETE_DOCTORDETAIL_START });
+  try {
+    let url = `http://localhost:5000/api/doctors/${id}`;
 
-//     await fetch(url, {
-//       method: 'DELETE',
-//       headers: {
-//         Accept: 'application/json',
-//         'Content-Type': 'application/json',
-//       },
-//     });
+    await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
 
-//     dispatch({ type: DELETE_DOCTORDETAIL_SUCCESS });
-//   } catch (error) {
-//     dispatch({ type: DELETE_DOCTORDETAIL_FAIL });
-//   }
-// };
+    dispatch({ type: DELETE_DOCTORDETAIL_SUCCESS });
+  } catch (error) {
+    dispatch({ type: DELETE_DOCTORDETAIL_FAIL });
+  }
+};
 
 const initialState = {
   doctorAppointment: [],
@@ -96,16 +96,16 @@ export default (state = initialState, action) => {
     // case PUT_ALL_DOCTORDETAIL_FAIL:
     //   return { ...state, error: true, areFetching: false };
 
-    // case DELETE_DOCTORDETAIL_START:
-    //   return { ...state, error: false, areFetching: true };
-    // case DELETE_DOCTORDETAIL_SUCCESS:
-    //   return {
-    //     ...state,
-    //     editDOCTORDETAILList: action.payload,
-    //     areFetching: false,
-    //   };
-    // case DELETE_DOCTORDETAIL_FAIL:
-    //   return { ...state, error: true, areFetching: false };
+    case DELETE_DOCTORDETAIL_START:
+      return { ...state, error: false, areFetching: true };
+    case DELETE_DOCTORDETAIL_SUCCESS:
+      return {
+        ...state,
+        editDOCTORDETAILList: action.payload,
+        areFetching: false,
+      };
+    case DELETE_DOCTORDETAIL_FAIL:
+      return { ...state, error: true, areFetching: false };
 
     default:
       return state;

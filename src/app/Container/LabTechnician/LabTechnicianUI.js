@@ -15,13 +15,13 @@ import {
   Badge,
 } from 'reactstrap';
 
-const DoctorList = ({
+const LabTechnicianList = ({
   doctorAppointmentList,
-  statusCount,
-  onDetailClick,
-  onDeleteClick,
+  //   statusCount,
+  //   onDetailClick,
+  //   onDeleteClick,
 }) => {
-  const renderDoctorList =
+  const renderTechnicianList =
     doctorAppointmentList &&
     doctorAppointmentList.records &&
     doctorAppointmentList.records.map((list) => (
@@ -38,7 +38,7 @@ const DoctorList = ({
           <td>
             <Badge color='' className='badge-dot mr-4'>
               <i className='bg-warning' />
-              {statusCount}
+              heheh
             </Badge>
           </td>
 
@@ -46,7 +46,6 @@ const DoctorList = ({
             <UncontrolledDropdown>
               <DropdownToggle
                 className='btn-icon-only text-light'
-                href='#pablo'
                 role='button'
                 size='sm'
                 color=''
@@ -55,13 +54,17 @@ const DoctorList = ({
                 <i className='fas fa-ellipsis-v' />
               </DropdownToggle>
               <DropdownMenu className='dropdown-menu-arrow' right>
-                <DropdownItem onClick={(e) => onDetailClick(e, list.id)}>
+                <DropdownItem
+                // onClick={(e) => onDetailClick(e, list.id)}
+                >
                   More details
                 </DropdownItem>
                 <DropdownItem onClick={(e) => e.preventDefault()}>
                   Edit
                 </DropdownItem>
-                <DropdownItem onClick={(e) => onDeleteClick(e, list.id)}>
+                <DropdownItem
+                // onClick={(e) => onDeleteClick(e, list.id)}
+                >
                   Delete
                 </DropdownItem>
               </DropdownMenu>
@@ -101,7 +104,7 @@ const DoctorList = ({
                       <th scope='col' />
                     </tr>
                   </thead>
-                  <tbody>{renderDoctorList}</tbody>
+                  <tbody>{renderTechnicianList}</tbody>
                 </Table>
               </Card>
             </div>
@@ -111,4 +114,4 @@ const DoctorList = ({
     </>
   );
 };
-export default DoctorList;
+export default LabTechnicianList;

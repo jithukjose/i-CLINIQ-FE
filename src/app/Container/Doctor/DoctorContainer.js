@@ -4,16 +4,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import DoctorDetail from './DoctorUI';
 import DoctorDetailModal from './DoctorDetailModal';
 // import ModalModule from '../../components/Modal';
-// import ActionProceedModal from '../../components/ActionProceedModal';
+import ActionProceedModal from '../../components/ActionProceedModal';
 import PaginationContainer from '../../components/Pagination';
-import { fetchDoctorAppointment } from './dux';
+import { fetchDoctorAppointment, deleteDoctorDetail } from './dux';
 
 const DoctorContainer = () => {
   const [isModalopen, setModal] = useState(false);
   const [filteredDetail, setFilteredDetail] = useState([{}]);
   // const [isModalopen, setModal] = useState(false);
   const [confirmModal, setConfirmModal] = useState(false);
-  // const [deleteId, setDeleteId] = useState();
+  const [deleteId, setDeleteId] = useState();
   // const [updatedName, setUpdatedName] = useState();
   // const [medBeforeEdit, SetMedBeforeEdit] = useState();
 
@@ -32,7 +32,7 @@ const DoctorContainer = () => {
     doctorAppointmentList &&
     doctorAppointmentList.records &&
     doctorAppointmentList.records.map((list) => {
-      if (list.user_test.length == 0) {
+      if (list.user_test.length === 0) {
         const count = 0;
         return count;
       } else {
@@ -41,6 +41,7 @@ const DoctorContainer = () => {
           if (appointmentList.status === 'pending') {
             pendingCount = pendingCount + 1;
           }
+          return pendingCount;
         });
       }
       return pendingCount;
@@ -51,7 +52,6 @@ const DoctorContainer = () => {
       const details =
         doctorAppointmentList &&
         doctorAppointmentList.records.filter((listItem) => listItem.id === id);
-      console.log(details, 'heree');
       setFilteredDetail(details);
     },
     // eslint-disable-next-line
@@ -84,20 +84,20 @@ const DoctorContainer = () => {
   // }, []);
 
   //on delete button click
-  // const onDeleteClick = useCallback((event, id) => {
-  //   setConfirmModal((prev) => !prev);
-  //   setDeleteId(id);
-  // }, []);
+  const onDeleteClick = useCallback((event, id) => {
+    setConfirmModal((prev) => !prev);
+    setDeleteId(id);
+  }, []);
   //conformation for delete click
-  // const onYesBtnClick = useCallback(
-  //   () => {
-  //     dispatch(deleteMedicine(deleteId));
-  //     setConfirmModal((prev) => !prev);
-  //     dispatch(fetchMedicineList);
-  //   },
-  //   // eslint-disable-next-line
-  //   [deleteId, fetchMedicineList] // add as a dependency here
-  // );
+  const onYesBtnClick = useCallback(
+    () => {
+      dispatch(deleteDoctorDetail(deleteId));
+      setConfirmModal((prev) => !prev);
+      dispatch(fetchDoctorAppointment);
+    },
+    // eslint-disable-next-line
+    [deleteId, fetchDoctorAppointment] // add as a dependency here
+  );
 
   // const onAddMedicineClick = () => {
   //   setModal((prev) => !prev);
@@ -110,6 +110,7 @@ const DoctorContainer = () => {
           doctorAppointmentList={doctorAppointmentList}
           statusCount={statusCount}
           onDetailClick={onDetailClick}
+          onDeleteClick={onDeleteClick}
         />
         <DoctorDetailModal
           setModal={isModalopen}
@@ -125,11 +126,11 @@ const DoctorContainer = () => {
           onUpdateClick={onUpdateClick}
           onAddMedicineClick={onAddMedicineClick}
         /> */}
-        {/* <ActionProceedModal
+        <ActionProceedModal
           setModal={confirmModal}
           onCancelClick={onCancelClick}
           onYesBtnClick={onYesBtnClick}
-        /> */}
+        />
       </div>
     </>
   );
