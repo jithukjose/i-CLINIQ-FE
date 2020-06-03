@@ -15,16 +15,18 @@ import {
   Badge,
 } from 'reactstrap';
 
-const LabTechnicianList = ({
-  doctorAppointmentList,
-  //   statusCount,
-  //   onDetailClick,
-  //   onDeleteClick,
+const labTechnicianList = ({
+  labTechnicianAppointmentList,
+  onDetailClick,
+  onDeleteClick,
 }) => {
-  const renderTechnicianList =
-    doctorAppointmentList &&
-    doctorAppointmentList.records &&
-    doctorAppointmentList.records.map((list) => (
+  let count,
+    completeCount,
+    pentingCount = 0;
+  const renderDoctorList =
+    labTechnicianAppointmentList &&
+    labTechnicianAppointmentList.records &&
+    labTechnicianAppointmentList.records.map((list) => (
       <React.Fragment key={list.id}>
         <tr>
           <th scope='row'>
@@ -34,11 +36,20 @@ const LabTechnicianList = ({
               </Media>
             </Media>
           </th>
-          <td>{list.user_test.length}</td>
+          <td>{list.user_labTestcase.length}</td>
           <td>
             <Badge color='' className='badge-dot mr-4'>
               <i className='bg-warning' />
-              heheh
+              {list.user_labTestcase.length === 0
+                ? (count = 0)
+                : list &&
+                  list.user_labTestcase.map((appointmentList) =>
+                    appointmentList.status === 'pending'
+                      ? (pentingCount = pentingCount + 1)
+                      : appointmentList.status === 'completed'
+                      ? (completeCount = completeCount + 1)
+                      : null
+                  )}
             </Badge>
           </td>
 
@@ -46,6 +57,7 @@ const LabTechnicianList = ({
             <UncontrolledDropdown>
               <DropdownToggle
                 className='btn-icon-only text-light'
+                href='#pablo'
                 role='button'
                 size='sm'
                 color=''
@@ -54,17 +66,13 @@ const LabTechnicianList = ({
                 <i className='fas fa-ellipsis-v' />
               </DropdownToggle>
               <DropdownMenu className='dropdown-menu-arrow' right>
-                <DropdownItem
-                // onClick={(e) => onDetailClick(e, list.id)}
-                >
+                <DropdownItem onClick={(e) => onDetailClick(e, list.id)}>
                   More details
                 </DropdownItem>
                 <DropdownItem onClick={(e) => e.preventDefault()}>
                   Edit
                 </DropdownItem>
-                <DropdownItem
-                // onClick={(e) => onDeleteClick(e, list.id)}
-                >
+                <DropdownItem onClick={(e) => onDeleteClick(e, list.id)}>
                   Delete
                 </DropdownItem>
               </DropdownMenu>
@@ -83,7 +91,7 @@ const LabTechnicianList = ({
             // onClick={() => this.notify('tr')}
             style={{ width: '20%' }}
           >
-            Add Doctor
+            Add Lab Technician
           </Button>
         </div>
         <div>
@@ -91,7 +99,7 @@ const LabTechnicianList = ({
             <div className='col'>
               <Card className='shadow'>
                 <CardHeader className='border-0'>
-                  <h3 className='mb-0'>Doctors</h3>
+                  <h3 className='mb-0'>Lab Technician</h3>
                 </CardHeader>
                 <Table className='align-items-center table-flush' responsive>
                   <tbody></tbody>
@@ -104,7 +112,7 @@ const LabTechnicianList = ({
                       <th scope='col' />
                     </tr>
                   </thead>
-                  <tbody>{renderTechnicianList}</tbody>
+                  <tbody>{renderDoctorList}</tbody>
                 </Table>
               </Card>
             </div>
@@ -114,4 +122,4 @@ const LabTechnicianList = ({
     </>
   );
 };
-export default LabTechnicianList;
+export default labTechnicianList;

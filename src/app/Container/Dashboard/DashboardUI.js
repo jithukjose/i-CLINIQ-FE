@@ -9,6 +9,7 @@ const Dashboard = ({
   medicineTotalCount,
   testTotalcount,
   doctorTotaCount,
+  labtechnicianTotalCount,
 }) => {
   return (
     <>
@@ -127,7 +128,7 @@ const Dashboard = ({
                       >
                         Lab Technicians
                       </div>
-                      <CardTitle tag='p'>12</CardTitle>
+                      <CardTitle tag='p'>{labtechnicianTotalCount}</CardTitle>
 
                       <p />
                     </div>

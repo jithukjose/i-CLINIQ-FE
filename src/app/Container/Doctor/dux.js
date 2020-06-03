@@ -51,7 +51,7 @@ export const fetchDoctorAppointment = async (dispatch) => {
 export const deleteDoctorDetail = (id) => async (dispatch) => {
   dispatch({ type: DELETE_DOCTORDETAIL_START });
   try {
-    let url = `http://localhost:5000/api/doctors/${id}`;
+    let url = `http://localhost:5000/api/users/${id}`;
 
     await fetch(url, {
       method: 'DELETE',

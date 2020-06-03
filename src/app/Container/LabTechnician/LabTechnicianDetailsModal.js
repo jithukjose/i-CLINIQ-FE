@@ -14,7 +14,11 @@ import {
   CardTitle,
 } from 'reactstrap';
 
-const DoctorDetailModal = ({ setModal, onCancelClick, filteredDetail }) => (
+const LabTechnicianDetailModal = ({
+  setModal,
+  onCancelClick,
+  filteredDetail,
+}) => (
   <Row>
     <div>
       <Modal isOpen={setModal}>
@@ -29,25 +33,21 @@ const DoctorDetailModal = ({ setModal, onCancelClick, filteredDetail }) => (
                   <FormGroup>
                     <label>First Name </label>
                     <Input
-                      disabled
                       value={filteredDetail[0] && filteredDetail[0].firstName}
                       type='text'
                     />
                     <label>Last Name</label>
                     <Input
-                      disabled
                       value={filteredDetail[0] && filteredDetail[0].lastName}
                       type='text'
                     />
                     <label>Email </label>
                     <Input
-                      disabled
                       value={filteredDetail[0] && filteredDetail[0].email}
                       type='text'
                     />
                     <label>Phone Number </label>
                     <Input
-                      disabled
                       value={filteredDetail[0] && filteredDetail[0].phoneNumber}
                       type='text'
                     />
@@ -68,4 +68,4 @@ const DoctorDetailModal = ({ setModal, onCancelClick, filteredDetail }) => (
   </Row>
 );
 
-export default DoctorDetailModal;
+export default LabTechnicianDetailModal;

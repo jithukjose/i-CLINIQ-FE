@@ -50,7 +50,6 @@ const MedicineContainer = () => {
   );
   const onEditChangeHandler = useCallback((e) => {
     setUpdatedName(e.target.value);
-    console.log(setUpdatedName, 'ppppppp');
   }, []);
 
   //on delete button click

@@ -15,7 +15,6 @@ import {
 } from 'reactstrap';
 
 const MedicalTestList = ({ medicalTestList, onDeleteClick, onUpdateClick }) => {
-  console.log(medicalTestList, 'jkjkjk');
   const renderMedicalTest =
     medicalTestList &&
     medicalTestList.records &&

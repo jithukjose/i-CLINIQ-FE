@@ -14,13 +14,13 @@ import {
   CardTitle,
 } from 'reactstrap';
 
-const DoctorDetailModal = ({ setModal, onCancelClick, filteredDetail }) => (
+const AddDoctorModal = ({ setModal, onCancelClick }) => (
   <Row>
     <div>
       <Modal isOpen={setModal}>
         <ModalBody style={{ fontFamily: 'Varela Round' }}>
           <CardHeader>
-            <CardTitle tag='h3'> Patient Details</CardTitle>
+            <CardTitle tag='h3'> Add Doctor</CardTitle>
           </CardHeader>
           <CardBody>
             <Form>
@@ -29,28 +29,26 @@ const DoctorDetailModal = ({ setModal, onCancelClick, filteredDetail }) => (
                   <FormGroup>
                     <label>First Name </label>
                     <Input
-                      disabled
-                      value={filteredDetail[0] && filteredDetail[0].firstName}
+                      //  value={}
                       type='text'
                     />
                     <label>Last Name</label>
                     <Input
-                      disabled
-                      value={filteredDetail[0] && filteredDetail[0].lastName}
+                      //  value={}
                       type='text'
                     />
                     <label>Email </label>
                     <Input
-                      disabled
-                      value={filteredDetail[0] && filteredDetail[0].email}
+                      //  value={}
                       type='text'
                     />
                     <label>Phone Number </label>
                     <Input
-                      disabled
-                      value={filteredDetail[0] && filteredDetail[0].phoneNumber}
+                      //  value={}
                       type='text'
                     />
+                    <label>password </label>
+                    <Input value='password' disabled type='text' />
                   </FormGroup>
                 </Col>
               </Row>
@@ -68,4 +66,4 @@ const DoctorDetailModal = ({ setModal, onCancelClick, filteredDetail }) => (
   </Row>
 );
 
-export default DoctorDetailModal;
+export default AddDoctorModal;

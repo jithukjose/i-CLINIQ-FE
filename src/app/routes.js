@@ -1,11 +1,3 @@
-// import Dashboard from './Containers/Dashboard';
-// import Notifications from './Containers/Notifications.jsx';
-// import Icons from './Containers/Icons';
-// import Typography from './Containers/Typography.jsx';
-// import TableList from './Containers/Tables';
-// import Maps from './views/Map.jsx';
-// import UserPage from './Containers/User.jsx';
-// import UpgradeToPro from './Containers/Upgrade.jsx';
 import MyDashboard from './Container/Dashboard';
 import Doctor from './Container/Doctor';
 import LabTechnician from './Container/LabTechnician';
@@ -22,6 +14,8 @@ import Observation from './Container/D-Observation';
 
 import UpcommingTest from './Container/L-UpcommingTest';
 import UpdateResult from './Container/L-UpdateResult';
+
+import SectionLogin from './Container/Accounts/index';
 
 var routes = [
   {
@@ -127,21 +121,14 @@ var routes = [
     component: UpdateResult,
     layout: '/lab-technician',
   },
-  // {
 
-  //   path: '/user-page',
-  //   name: 'Profile',
-  //   icon: 'nc-icon nc-single-02',
-  //   component: UserPage,
-  //   layout: '/admin',
-  // },
-  // {
-  //   path: '/dashboard',
-  //   name: 'Dashboard',
-  //   icon: 'nc-icon nc-bank',
-  //   component: Dashboard,
-  //   layout: '/admin',
-  // },
+  {
+    path: '',
+    name: 'MyDashboard',
+    icon: 'nc-icon nc-bank',
+    component: SectionLogin,
+    layout: '/login',
+  },
 
   // {
   //   path: '/notifications',

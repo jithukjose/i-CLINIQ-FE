@@ -20,56 +20,60 @@ const DoctorList = ({
   statusCount,
   onDetailClick,
   onDeleteClick,
+  addDoctorBtnClick,
 }) => {
-  const renderDoctorList =
-    doctorAppointmentList &&
-    doctorAppointmentList.records &&
-    doctorAppointmentList.records.map((list) => (
-      <React.Fragment key={list.id}>
-        <tr>
-          <th scope='row'>
-            <Media className='align-items-center'>
-              <Media>
-                <span className='mb-0 text-sm'>{list.firstName}</span>
-              </Media>
+  let count,
+    completeCount,
+    pentingCount = 0;
+  const renderDoctorList = doctorAppointmentList?.records?.map((list) => (
+    <React.Fragment key={list.id}>
+      <tr>
+        <th scope='row'>
+          <Media className='align-items-center'>
+            <Media>
+              <span className='mb-0 text-sm'>{`${list.firstName} ${list.lastName}`}</span>
             </Media>
-          </th>
-          <td>{list.user_test.length}</td>
-          <td>
-            <Badge color='' className='badge-dot mr-4'>
-              <i className='bg-warning' />
-              {statusCount}
-            </Badge>
-          </td>
+          </Media>
+        </th>
+        <td>{list.user_test.length}</td>
+        <td>
+          <Badge color='' className='badge-dot mr-4'>
+            <i className='bg-warning' />
+            {list.user_test.length === 0
+              ? (count = 0)
+              : list?.user_test.filter((test) => test.status === 'pending')
+                  .length}
+          </Badge>
+        </td>
 
-          <td className='text-right'>
-            <UncontrolledDropdown>
-              <DropdownToggle
-                className='btn-icon-only text-light'
-                href='#pablo'
-                role='button'
-                size='sm'
-                color=''
-                onClick={(e) => e.preventDefault()}
-              >
-                <i className='fas fa-ellipsis-v' />
-              </DropdownToggle>
-              <DropdownMenu className='dropdown-menu-arrow' right>
-                <DropdownItem onClick={(e) => onDetailClick(e, list.id)}>
-                  More details
-                </DropdownItem>
-                <DropdownItem onClick={(e) => e.preventDefault()}>
-                  Edit
-                </DropdownItem>
-                <DropdownItem onClick={(e) => onDeleteClick(e, list.id)}>
-                  Delete
-                </DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
-          </td>
-        </tr>
-      </React.Fragment>
-    ));
+        <td className='text-right'>
+          <UncontrolledDropdown>
+            <DropdownToggle
+              className='btn-icon-only text-light'
+              href='#pablo'
+              role='button'
+              size='sm'
+              color=''
+              onClick={(e) => e.preventDefault()}
+            >
+              <i className='fas fa-ellipsis-v' />
+            </DropdownToggle>
+            <DropdownMenu className='dropdown-menu-arrow' right>
+              <DropdownItem onClick={(e) => onDetailClick(e, list.id)}>
+                More details
+              </DropdownItem>
+              <DropdownItem onClick={(e) => e.preventDefault()}>
+                Edit
+              </DropdownItem>
+              <DropdownItem onClick={(e) => onDeleteClick(e, list.id)}>
+                Delete
+              </DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
+        </td>
+      </tr>
+    </React.Fragment>
+  ));
   return (
     <>
       <div className='content'>
@@ -79,6 +83,7 @@ const DoctorList = ({
             color='primary'
             // onClick={() => this.notify('tr')}
             style={{ width: '20%' }}
+            onClick={() => addDoctorBtnClick()}
           >
             Add Doctor
           </Button>

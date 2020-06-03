@@ -12,6 +12,7 @@ import 'perfect-scrollbar/css/perfect-scrollbar.css';
 import AdminLayout from './app/layouts/Admin.js';
 import DoctorLayout from './app/layouts/doctor.js';
 import LabTechnicianLayout from './app/layouts/lab_technician';
+import LoginLayout from './app/layouts/Login';
 
 import getStore from './app/Store/store';
 import { createBrowserHistory } from 'history';
@@ -22,6 +23,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Switch>
+        <Route path='/login' render={(props) => <LoginLayout {...props} />} />
         <Route path='/admin' render={(props) => <AdminLayout {...props} />} />
         <Route
           path='/lab-technician'

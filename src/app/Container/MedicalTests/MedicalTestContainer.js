@@ -46,14 +46,11 @@ const MedicalTestContainer = () => {
       // dispatch(editMedicine(updatedItem[0].id));
       const medicineName = updatedItem[0].name;
 
-      SetMedBeforeEdit(medicineName);
+      setUpdatedName(medicineName);
     },
     // eslint-disable-next-line
     [medicalTestList]
   );
-  const onEditChangeHandler = useCallback((e) => {
-    setUpdatedName(e.target.value);
-  }, []);
 
   //on delete button click
   const onDeleteClick = useCallback((event, id) => {
@@ -81,34 +78,18 @@ const MedicalTestContainer = () => {
   const onAddMedicineClick = () => {
     setModal((prev) => !prev);
   };
-
-  const Children = () => {
-    return (
-      <ModalBody style={{ fontFamily: 'Varela Round' }}>
-        <CardHeader>
-          <CardTitle tag='h3'> Update Medicine Name</CardTitle>
-        </CardHeader>
-        <CardBody>
-          <Form>
-            <Row>
-              <Col className='pr-1' md='10'>
-                <FormGroup>
-                  <label>Medicine Name </label>
-                  <Input
-                    defaultValue={medBeforeEdit}
-                    placeholder='Medicine Name'
-                    type='text'
-                    onChange={(e) => onEditChangeHandler(e)}
-                    // key={index}
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-          </Form>
-        </CardBody>
-      </ModalBody>
-    );
+  const onEditChangeHandler = (e) => {
+    e.preventDefault();
+    console.log(e, 'here');
+    setUpdatedName(e.target.value);
   };
+  // const Children = () => {
+  //   console.log('helloooooo');
+
+  //   return (
+
+  //   );
+  // };
 
   return (
     <>
@@ -121,7 +102,9 @@ const MedicalTestContainer = () => {
         />
         <PaginationContainer />
         <ModalModule
-          Children={Children}
+          // Children={Children}
+          onEditChangeHandler={onEditChangeHandler}
+          updatedName={updatedName}
           setModal={isModalopen}
           onCancelClick={onCancelClick}
           onUpdateClick={onUpdateClick}

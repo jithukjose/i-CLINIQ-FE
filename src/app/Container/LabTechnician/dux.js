@@ -6,11 +6,11 @@ const GET_ALL_LABTECHNICIAN_FAIL = 'ADMIN/GET_ALL_LABTECHNICIAN_FAIL';
 // const PUT_ALL_LABTECHNICIAN_SUCCESS = 'ADMIN/PUT_ALL_LABTECHNICIAN_SUCCESS';
 // const PUT_ALL_LABTECHNICIAN_FAIL = 'ADMIN/PUT_ALL_LABTECHNICIAN_FAIL';
 
-// const DELETE_LABTECHNICIAN_START = 'ADMIN/DELETE_LABTECHNICIAN_START';
-// const DELETE_LABTECHNICIAN_SUCCESS = 'ADMIN/DELETE_LABTECHNICIAN_SUCCESS';
-// const DELETE_LABTECHNICIAN_FAIL = 'ADMIN/DELETE_LABTECHNICIAN_FAIL';
+const DELETE_LABTECHNICIAN_START = 'ADMIN/DELETE_LABTECHNICIAN_START';
+const DELETE_LABTECHNICIAN_SUCCESS = 'ADMIN/DELETE_LABTECHNICIAN_SUCCESS';
+const DELETE_LABTECHNICIAN_FAIL = 'ADMIN/DELETE_LABTECHNICIAN_FAIL';
 
-export const fetchDoctorAppointment = async (dispatch) => {
+export const fetchLabAppointment = async (dispatch) => {
   dispatch({ type: GET_ALL_LABTECHNICIAN_START });
   try {
     let url =
@@ -49,27 +49,27 @@ export const fetchDoctorAppointment = async (dispatch) => {
 //   }
 // };
 
-// export const deleteLABTECHNICIAN = (id) => async (dispatch) => {
-//   dispatch({ type: DELETE_LABTECHNICIAN_START });
-//   try {
-//     let url = `http://localhost:5000/api/doctors/${id}`;
+export const deleteLabTechnician = (id) => async (dispatch) => {
+  dispatch({ type: DELETE_LABTECHNICIAN_START });
+  try {
+    let url = `http://localhost:5000/api/users/${id}`;
 
-//     await fetch(url, {
-//       method: 'DELETE',
-//       headers: {
-//         Accept: 'application/json',
-//         'Content-Type': 'application/json',
-//       },
-//     });
+    await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
 
-//     dispatch({ type: DELETE_LABTECHNICIAN_SUCCESS });
-//   } catch (error) {
-//     dispatch({ type: DELETE_LABTECHNICIAN_FAIL });
-//   }
-// };
+    dispatch({ type: DELETE_LABTECHNICIAN_SUCCESS });
+  } catch (error) {
+    dispatch({ type: DELETE_LABTECHNICIAN_FAIL });
+  }
+};
 
 const initialState = {
-  doctorAppointment: [],
+  labTechnicianDetails: [],
   //   editdoctorAppointment: [],
 };
 
@@ -80,7 +80,7 @@ export default (state = initialState, action) => {
     case GET_ALL_LABTECHNICIAN_SUCCESS:
       return {
         ...state,
-        doctorAppointment: action.payload,
+        labTechnicianDetails: action.payload,
         areFetching: false,
       };
     case GET_ALL_LABTECHNICIAN_FAIL:
@@ -97,16 +97,16 @@ export default (state = initialState, action) => {
     // case PUT_ALL_LABTECHNICIAN_FAIL:
     //   return { ...state, error: true, areFetching: false };
 
-    // case DELETE_LABTECHNICIAN_START:
-    //   return { ...state, error: false, areFetching: true };
-    // case DELETE_LABTECHNICIAN_SUCCESS:
-    //   return {
-    //     ...state,
-    //     editLABTECHNICIANList: action.payload,
-    //     areFetching: false,
-    //   };
-    // case DELETE_LABTECHNICIAN_FAIL:
-    //   return { ...state, error: true, areFetching: false };
+    case DELETE_LABTECHNICIAN_START:
+      return { ...state, error: false, areFetching: true };
+    case DELETE_LABTECHNICIAN_SUCCESS:
+      return {
+        ...state,
+        editLABTECHNICIANList: action.payload,
+        areFetching: false,
+      };
+    case DELETE_LABTECHNICIAN_FAIL:
+      return { ...state, error: true, areFetching: false };
 
     default:
       return state;
