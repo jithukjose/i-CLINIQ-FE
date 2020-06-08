@@ -22,9 +22,8 @@ const DoctorList = ({
   onDeleteClick,
   addDoctorBtnClick,
 }) => {
-  let count,
-    completeCount,
-    pentingCount = 0;
+  let count = 0;
+
   const renderDoctorList = doctorAppointmentList?.records?.map((list) => (
     <React.Fragment key={list.id}>
       <tr>

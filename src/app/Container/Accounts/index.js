@@ -1,2 +1,2 @@
-import SectionLogin from './LoginPage';
-export default SectionLogin;
+import LoginContainer from './LoginPage';
+export default LoginContainer;

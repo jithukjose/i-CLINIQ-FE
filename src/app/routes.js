@@ -15,7 +15,7 @@ import Observation from './Container/D-Observation';
 import UpcommingTest from './Container/L-UpcommingTest';
 import UpdateResult from './Container/L-UpdateResult';
 
-import SectionLogin from './Container/Accounts/index';
+import LoginContainer from './Container/Accounts';
 
 var routes = [
   {
@@ -126,7 +126,7 @@ var routes = [
     path: '',
     name: 'MyDashboard',
     icon: 'nc-icon nc-bank',
-    component: SectionLogin,
+    component: LoginContainer,
     layout: '/login',
   },
 

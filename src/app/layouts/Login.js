@@ -3,8 +3,6 @@ import React from 'react';
 import PerfectScrollbar from 'perfect-scrollbar';
 import { Route, Switch } from 'react-router-dom';
 
-import Footer from '../components/Footer/Footer.jsx';
-
 import routes from '../routes';
 
 var ps;

@@ -7,17 +7,16 @@ import ActionProceedModal from '../../components/ActionProceedModal';
 import PaginationContainer from '../../components/Pagination';
 import { fetchMedicineTestList, deleteTests } from './dux';
 
-import {
-  CardHeader,
-  CardTitle,
-  Row,
-  Form,
-  Input,
-  FormGroup,
-  CardBody,
-  Col,
-  ModalBody,
-} from 'reactstrap';
+import // CardHeader,
+// CardTitle,
+// Row,
+// Form,
+// Input,
+// FormGroup,
+// CardBody,
+// Col,
+// ModalBody,
+'reactstrap';
 
 const MedicalTestContainer = () => {
   const [isModalopen, setModal] = useState(false);
